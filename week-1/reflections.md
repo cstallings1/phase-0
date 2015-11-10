@@ -29,3 +29,19 @@ A shell provides an interface to an operating system. Shell is a broad term and 
 - help: pulls up a manual showing information on all commands
 
 # 1.3 Forking and Cloning
+
+*To create a new repo*
+
+Log in to your GitHub account and click on the bight green "+ New Repository" button to the right. Fill in the "Repository Name" box with a short descriptive name. Make sure "Public" is selected. Click on the "Create Repository" button at the bottom. You should now see this new repo listed on your GitHub page.
+
+*To fork a repo*
+
+Search GitHub for the repo you want to fork and select it. Click the "Fork" button in the top right corner. If needed, select your profile. GitHut will take you back to your profile and you'll see the repo you just forked.
+
+*To clone a repo*
+
+From your GitHub account select the repo you want to clone. Copy the clone URL listed on the right side of the screen. Open your terminal and cd into the directory you want this repo to be copied to. Enter the command "git clone <clone URL>". You should now be able to enter -ls and see the newly cloned repo; it's now saved locally to your computer.
+
+You would want to fork a repository if you were planning on adding to somebody else's project or just wanted to play around with the code on your own without any chance of changing the original code. It's much quicker than making a new repo and copying code.
+
+I was able to set up git and GitHub without any issues. However, I did learn about SSH keys as a means of secure login along the way. I knew of them but never knew what they did until I had to set up GitHub.
