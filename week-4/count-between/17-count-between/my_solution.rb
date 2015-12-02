@@ -18,5 +18,5 @@
 
 def count_between(list_of_integers, lower_bound, upper_bound)
   r = lower_bound..upper_bound
-  list_of_integers.count { |i| r.cover?(i)}
+  list_of_integers.count { |i| r.cover?(i) }
 end
