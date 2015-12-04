@@ -13,10 +13,20 @@
 # If +array+ is empty the method should return 0
 
 # Your Solution Below
-
-# def count_between(list_of_integers, lower_bound, upper_bound)
-
 def count_between(list_of_integers, lower_bound, upper_bound)
-  r = lower_bound..upper_bound
-  list_of_integers.count { |i| r.cover?(i) }
+  count = 0
+
+  list_of_integers.each do |num|
+    if (num >= lower_bound && num <= upper_bound)
+      count += 1
+    end
+  end
+
+  return count
+end
+
+#Refactored
+def count_between(list_of_integers, lower_bound, upper_bound)
+  range = (lower_bound..upper_bound)
+  list_of_integers.count { |i| range.include?(i) }
 end
