@@ -12,16 +12,18 @@
 
 
 # Your Solution Below
-# def longest_string(list_of_words)
-#   longest_word = list_of_words[0]
-#   list_of_words.each do |n|
-#     if n.length > longest_word.length
-#       longest_word = n
-#     end
-#   end
-#   return longest_word
-# end
+def longest_string(list_of_words)
+  longest_word = list_of_words[0]
+  list_of_words.each do |n|
+    if n.length > longest_word.length
+      longest_word = n
+    end
+  end
+  return longest_word
+end
 
+
+#Refactored
 def longest_string(list_of_words)
   list_of_words.sort_by! { |word| word.length }
   return list_of_words [-1]

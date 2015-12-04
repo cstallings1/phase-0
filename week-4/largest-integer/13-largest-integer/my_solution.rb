@@ -12,8 +12,22 @@
 
 #Your Solution Below
 def largest_integer(list_of_nums)
-  list_of_nums.sort!
-  return list_of_nums[-1]
+  max = list_of_nums[0]
+
+  list_of_nums.each do |num|
+    if num > max
+      max = num
+    end
+  end
+
+  return max
+
+end
+
+
+#Refactored
+def largest_integer(list_of_nums)
+  list_of_nums.max
 end
 
 

@@ -12,7 +12,22 @@
 
 #Your Solution Below
 def shortest_string(list_of_words)
+  shortest = list_of_words[0]
+
+  list_of_words.each do |word|
+    if word.length < shortest.length
+      shortest = word
+    end
+  end
+
+  return shortest
+end
+
+
+#Refactored
+def shortest_string(list_of_words)
   list_of_words.sort_by! {|word| word.length}
   return list_of_words[0]
 end
+
 
