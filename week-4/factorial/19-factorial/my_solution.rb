@@ -13,3 +13,8 @@ def factorial(number)
     end
     return factor
 end
+
+#Refactored later
+def factorial(number)
+  (1..number).reduce(1, :*)
+end
