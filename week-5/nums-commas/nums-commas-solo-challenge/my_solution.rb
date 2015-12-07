@@ -65,3 +65,13 @@ def separate_comma(num)
 end
 
 # 3. Reflection
+# What was your process for breaking the problem down? What different approaches did you consider?
+  # I thought about how I would add commas to the number if I was just doing it with pen and paper. I would look at the number as a whole, start counting right to left adding a comma after every third digit. I also thought about breaking down the number into chucks of three digits and adding commas between each section but that didn't end up working out.
+# Was your pseudocode effective in helping you build a successful initial solution?
+  # It was effective for the most part. It definitely helped me when writing the code, I just had to add couple things like a conversion from an array to a string.
+# What new Ruby method(s) did you use when refactoring your solution? Describe your experience of using the Ruby documentation to implement it/them (any difficulties, etc.). Did it/they significantly change the way your code works? If so, how?
+  # I used the insert method in my refactored code, this was a new one for me. Using insert allowed me to get rid of the unshift and pop methods I was using originally but it didn't make a signficant change on my code. I would have liked to condense my refactored solution even more but couldn't think of a way to do it without using regular expressions.
+# How did you initially iterate through the data structure?
+  # I used an until loop, I kept looping until the array with the original number was empty.
+# Do you feel your refactored solution is more readable than your initial solution? Why?
+  # My refactored solution is  more readable mainly because I'm using insert instead of unshift and pop. Unshift and pop don't read as well as insert - there's really no question what your doing when you use a word like insert.
