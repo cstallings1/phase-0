@@ -136,4 +136,17 @@ update_qty(grocery_list, "Ice Cream", 1)
 
 print_list(grocery_list)
 
+# What did you learn about pseudocode from working on this challenge?
+  #I learned not to make too many assumptions in my pseudocode. As I was writing the pseudocode my guide was encouraging me to be a little more explicit in what I wanted to do.
+# What are the tradeoffs of using Arrays and Hashes for this challenge?
+  #The advantage to using a hash for the grocery list is that you can easily retrieve or update a value by using the name of the key, which would be the item. This is more intuitive that trying to call an index of an array - that doesn't hold much meaning in a grocery list. I did use an array when I needed to quickly seperate words in a string into different elements. You can quickly and easily manipulate data using arrays.
+# What does a method return?
+  #A method returns the last line of the method, this is the output. Most of my methods return a puts statement, which is printing to the console but actually returning nil.
+# What kind of things can you pass into methods as arguments?
+  #You can pass strings, numbers, arrays, hashes, etc as arguments to methods.
+# How can you pass information between methods?
+  #You can create a variable outside of all methods that holds the return value for a method. Then you can use that variable as an argument for another method. This transfers the information from one method to another.
+# What concepts were solidified in this challenge, and what concepts are still confusing?
+  #I have a much better understanding of how to pass information from one method to another without the use of classes. This was a little hard for me to wrap my mind around at first, but once I started refactoring the code I was able to think it through again and understand the concept better. I am also more comfortable manipulating hashes now.
+
 
