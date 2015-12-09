@@ -2,7 +2,7 @@
 
 # I worked on this challenge [by myself]
 
-# I spent [] hours on this challenge.
+# I spent [1.5] hours on this challenge.
 
 # 0. Pseudocode
 
@@ -44,10 +44,8 @@ class Die
   attr_reader :sides
 
   def initialize(sides)
-    if sides < 1
-      raise ArgumentError.new("Please provide a positive integer")
-    end
     @sides = sides
+    raise ArgumentError.new("Please provide a positive integer") if sides < 1
   end
 
   def roll
@@ -55,9 +53,9 @@ class Die
   end
 end
 
-
-
-
+die = Die.new(6)
+puts "sides: #{die.sides}"
+puts "roll: #{die.roll}"
 
 
 # 4. Reflection
