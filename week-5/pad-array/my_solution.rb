@@ -67,14 +67,22 @@ def pad(array, min_size, value = nil) #non-destructive
 end
 
 # 4. Reflection
-# Which data structure did you and your pair decide to implement and why?
-  #We used arrays for this challenge because the order of the elements was more important than the association of the elements.
+# Were you successful in breaking the problem down into small steps?
+  #Yes, this challenge was easier for me to pseudocode than others.
 
-# Were you more successful breaking this problem down into implementable pseudocode than the last with a pair?
-  # Yes, this challenge was more natural for me to break down the problem into smaller steps.
+# Once you had written your pseudocode, were you able to easily translate it into code? What difficulties and successes did you have?
+  #We were able to easily translate the pseudocode to the actual code. The only difficulties I had was when I had to think about weather or not I needed to return a new array or the same array. That wasn't specified in the pseudocode.
 
-# What issues/successes did you run into when translating your pseudocode to code?
-  #I had to remember if I should be returning the original array or a new array depending on which method I was working on. I only had one section of pseudocode so it was up to me to decide if I should be returning the original array or a new array.
+# Was your initial solution successful at passing the tests? If so, why do you think that is? If not, what were the errors you encountered and what did you do to resolve them?
+  #The initial solution failed the test when 0 was given as the min_size. To fix this we added an 'or' statement to include this case in our IF statement.
 
-# What methods did you use to iterate through the content? Did you find any good ones when you were refactoring? Were they difficult to implement?
-  # I used an until loop when I refactored the pad! method because I felt it read better than the initial solution. These methods weren't used to iterate, but the clone and fill methods were new to me and I found them very helpful. They weren't hard to implement, I just had to really think through how I was trying to use them.
+# When you refactored, did you find any existing methods in Ruby to clean up your code?
+  #We used clone and fill in our refacored solution. These methods were new to me and I can see them being very helpful in the future when working witha arrays.
+
+# How readable is your solution? Did you and your pair choose descriptive variable names?
+  #I think the final solution is pretty readable and the variable names descriptive. I did decide to use a loop in the refactored solution for the pad method instaed of chaining methods together on one line - I thought this improved readabillity.
+
+# What is the difference between destructive and non-destructive methods in your own words?
+  #A destructive method is one that changes the input. An '!' is added a the end of a desructive method to signify danger. A non-desructive method does not change the input, it duplicates the input as a new object.
+
+
