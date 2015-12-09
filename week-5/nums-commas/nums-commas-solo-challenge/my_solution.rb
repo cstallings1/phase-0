@@ -1,6 +1,6 @@
 # Numbers to Commas Solo Challenge
 
-# I spent [] hours on this challenge.
+# I spent [2.5] hours on this challenge.
 
 # Complete each step below according to the challenge directions and
 # include it in this file. Also make sure everything that isn't code
@@ -26,7 +26,7 @@
   # Return the new container as a string
 
 
-# 1. Initial Solution
+# # 1. Initial Solution
 def separate_comma(num)
   num = num.to_s.split(//)
   new_num = []
@@ -51,18 +51,18 @@ end
 
 # 2. Refactored Solution
 def separate_comma(num)
-  num = num.to_s.split(//)
+  num = num.to_s
   count = 0
 
   (num.length / 3).times do |n|
     count -= 4
     num.insert(count, ",")
   end
-
-  num.shift if num[0] == ","
-
-  return num.join("")
+  num.slice!(0) if num.start_with?(",")
+  return num
 end
+
+puts separate_comma(100000)
 
 # 3. Reflection
 # What was your process for breaking the problem down? What different approaches did you consider?
@@ -70,8 +70,8 @@ end
 # Was your pseudocode effective in helping you build a successful initial solution?
   # It was effective for the most part. It definitely helped me when writing the code, I just had to add couple things like a conversion from an array to a string.
 # What new Ruby method(s) did you use when refactoring your solution? Describe your experience of using the Ruby documentation to implement it/them (any difficulties, etc.). Did it/they significantly change the way your code works? If so, how?
-  # I used the insert method in my refactored code, this was a new one for me. Using insert allowed me to get rid of the unshift and pop methods I was using originally but it didn't make a signficant change on my code. I would have liked to condense my refactored solution even more but couldn't think of a way to do it without using regular expressions.
+  # I used the insert and slice method in my refactored code, these were new for me. Using insert allowed me to get rid of the unshift and pop methods I was using originally. I didn't have trouble using the Ruby docs, I just need to be careful to manage my time because I can quickly get lost in researching the methods. Using the docs did not significantly change my code but it did help to make it more concise.
 # How did you initially iterate through the data structure?
   # I used an until loop, I kept looping until the array with the original number was empty.
 # Do you feel your refactored solution is more readable than your initial solution? Why?
-  # My refactored solution is  more readable mainly because I'm using insert instead of unshift and pop. Unshift and pop don't read as well as insert - there's really no question what your doing when you use a word like insert.
+  # My refactored solution is  more readable mainly because I'm using insert instead of unshift and pop. Unshift and pop don't read as well as insert - there's really no question what your doing when you use a word like insert. I also decided not to put the digits in an array as it was unnecessary.
