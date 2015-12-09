@@ -70,5 +70,6 @@ end
 # Why would you use a Ruby class?
   #I would use a class when it makes sense for different methods to communicate with eachother. If I had a few methods that were all related, I would think about putting them in a class so I could call the methods within other methods; it creates a framework for how you want an object to behave.
 # What is the difference between a local variable and an instance variable?
-  # A local variable is contained within it's method, it can't be called outside that method. An instance variable is contained within that instance of the class. It can be shared between different methods in that class.
+  # A local variable is contained within it's method, loop, etc. and it can't be called outside of that constructor. An instance variable is contained within that instance of a class. It can be shared between different methods in that class. The syntax for creating an instance variable is an "@" preceeding the name.
 # Where can an instance variable be used?
+  # As long as the variable was created within an instance of a class, it can used anywhere in any method in that class.
