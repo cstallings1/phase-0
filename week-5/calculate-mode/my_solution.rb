@@ -41,8 +41,7 @@ def mode(array)
 end
 
 
-
-# 3. Refactored Solution
+#Another initial solution
 def mode(array)
   new_array = []
   count_array = []
@@ -56,6 +55,18 @@ def mode(array)
   end
 
   p new_array.uniq
+end
+
+
+
+# 3. Refactored Solution
+def mode(array)
+
+ count_array = array.map {|i| array.count(i)}
+
+ new_array = array.select {|i| i if array.count(i) == count_array.max}
+
+ p new_array.uniq
 end
 
 
