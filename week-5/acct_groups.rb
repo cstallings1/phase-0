@@ -7,12 +7,14 @@
   #Return the container
 #Output: Hash consisting of student name and their assigned accountability group
 
+#The MVP is getting a hash the effectively places students in an accountability group. The next step would be to get the output to print the data in a more readable format
+
 names = ["Alex Forger", "Alexander Nelson", "Karen Ball", "Christopher Bovio", "Gino Paul Capio", "Jonathan Chin", "Claire Samuels", "Ray Curran", "David Louie", "David Spivey", "Max Davis", "Devin Mandelbaum", "Afton Downey", "Jordan Fox", "Rebecca Gahart", "Gary Wong", "Hodges Glenn", "Everett Golden", "Christopher Graf", "Alana Hanson", "LeeAnne Hawley", "Sabri helal", "Thomas Huang", "Jeff Schneider", "Jillian Dunleavy", "Kevin Huang", "Khamla Phimmachack", "KT Khoo", "Andrew s Kim", "Joseph Kim", "Michal Klimek", "Nathan knockeart", "Brigitte Kozena", "Donald Lang", "Tiffany Larson", "Liam Mackey", "Johanna Lonn", "Tyler McKenzie", "Katie Meyer", "Meagan Munch", "Lucas Nagle", "Lydia Nash", "Jovanka Nikolovski", "James O'Neal", "Greg Park", "Patrick Oliphant", "Peter Lowe", "Lauren Reid", "Roche Janken", "David Rothschild", "Susan Savariar", "Kurt Schlueter", "Sharon Claitor", "Marshall Sosland", "Catie Stallings", "Steven King", "Eric Tenza", "Timur Catakli", "Todd Seller", "Dan Turcza", "Lindsey Ullman", "Raj Vashist", "Violet Dang", "Chris Wong", "Angelika Yoder", "Michelle Zulli"]
 
 #Initial Solution
 def acct_groups(students)
   cohort = {}
-  n = 1
+  n = 1r
   students.each do |name|
     cohort[name] = "Acct Group #{n}"
     n < 14 ? n += 1 : n = 1
@@ -65,7 +67,7 @@ def acct_groups(students, groups=14)
   end
 end
 
-acct_groups(names, 15) #Output will be formatted in a more readabe way
+acct_groups(names, 16) #Output will be formatted in a more readabe way
 
 # What was the most interesting and most difficult part of this challenge?
   #The most insteresting part was playing with different methods to see the different ways I could output the data. The most difficult part was deciding if I wanted to use an array or a hash. I started second guessing myself when I was writing the initial solution but I continued on and I like the way my program executes now.
