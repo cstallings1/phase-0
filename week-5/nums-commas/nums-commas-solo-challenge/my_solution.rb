@@ -1,6 +1,6 @@
 # Numbers to Commas Solo Challenge
 
-# I spent [2.5] hours on this challenge.
+# I spent [3] hours on this challenge.
 
 # Complete each step below according to the challenge directions and
 # include it in this file. Also make sure everything that isn't code
@@ -62,6 +62,12 @@ def separate_comma(num)
   return num
 end
 
+
+#Another refactored solution
+def separate_comma(num)
+  num.to_s.chars.to_a.reverse.each_slice(3).map{|n|n.join("")}.join(",").reverse
+end
+
 puts separate_comma(100000)
 
 # 3. Reflection
@@ -74,4 +80,4 @@ puts separate_comma(100000)
 # How did you initially iterate through the data structure?
   # I used an until loop, I kept looping until the array with the original number was empty.
 # Do you feel your refactored solution is more readable than your initial solution? Why?
-  # My refactored solution is  more readable mainly because I'm using insert instead of unshift and pop. Unshift and pop don't read as well as insert - there's really no question what your doing when you use a word like insert. I also decided not to put the digits in an array as it was unnecessary.
+  # My first refactored solution is  more readable mainly because I'm using insert instead of unshift and pop. Unshift and pop don't read as well as insert - there's really no question what your doing when you use a word like insert. I also decided not to put the digits in an array as it was unnecessary. For fun I just went back to my code to see if I could get it down to one line and was able to do it - the second refactored solution is definitely better because it makes logical sense as you read through the chained methods.
