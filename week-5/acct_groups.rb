@@ -14,7 +14,7 @@ names = ["Alex Forger", "Alexander Nelson", "Karen Ball", "Christopher Bovio", "
 #Initial Solution
 def acct_groups(students)
   cohort = {}
-  n = 1r
+  n = 1
   students.each do |name|
     cohort[name] = "Acct Group #{n}"
     n < 14 ? n += 1 : n = 1
