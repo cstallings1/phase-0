@@ -26,9 +26,7 @@ end
 puts acct_groups(names)
 
 
-
 #Add Complexity
-
 def acct_groups(students)
   cohort = {}
   n = 1
@@ -38,28 +36,7 @@ def acct_groups(students)
   end
 
   n = 1
-  until n == 15
-    puts cohort.select {|key, value| value == "Acct Group #{n}"}
-    n += 1
-  end
-end
-
-acct_groups(names) #Output will print grouped by accountability group for better readability
-
-
-
-#Refactored Solution
-
-def acct_groups(students, groups=14)
-  cohort = {}
-  n = 1
-  students.each do |name|
-    cohort[name] = "Acct Group #{n}"
-    n < groups ? n += 1 : n = 1
-  end
-
-  n = 1
-  until n > groups
+  until n > 14
     puts "Accountability Group #{n}: "
     puts cohort.select {|key, value| value == "Acct Group #{n}"}.keys
     puts
@@ -67,8 +44,29 @@ def acct_groups(students, groups=14)
   end
 end
 
-acct_groups(names, 16) #Output will be formatted in a more readabe way
+acct_groups(names) #Prints the output in a more organized way
 
+
+# Refactored Solution
+def acct_groups(students, min_group_size)
+  if students.length > min_group_size
+    cohort = {}
+    n = 0
+    students.each_slice(min_group_size) do |group|
+      if group.length >= min_group_size
+        cohort[n+=1] = group
+      else
+        group.each {|name| cohort[rand(1..cohort.keys.last)] << name}
+      end
+    end
+    cohort.each {|k,v| puts "#{k}: #{v}"}
+  end
+  return students
+end
+
+acct_groups(names, 4) #Automate the number of groups created - change data structure to make each group a key and an array of names the value.
+
+#REFLECTION:
 # What was the most interesting and most difficult part of this challenge?
   #The most insteresting part was playing with different methods to see the different ways I could output the data. The most difficult part was deciding if I wanted to use an array or a hash. I started second guessing myself when I was writing the initial solution but I continued on and I like the way my program executes now.
 
@@ -76,10 +74,10 @@ acct_groups(names, 16) #Output will be formatted in a more readabe way
   #Yes - it was hard for me at first but the more I do it the better I get. This was the easiest time I've had so far writing the pseudocode.
 
 # Was your approach for automating this task a good solution? What could have made it even better?
-  #I think it was a good approach because it's not too lengthy and it did a good job of outputting the same groups every time I ran the program. If I removed a few people the groups were still well balanced. To make this better I think it would make sense to create a seperate method for the printing of the list.
+  #I think it was a good approach because it presents the data in an organized way and it handles the redistribution of small groups. To make this better I think it would make sense to create additional methods, maybe one to handle the redistribution of small groups and one method that would automatically remove people if you passed in their name as an argument.
 
 # What data structure did you decide to store the accountability groups in and why?
-  #I ended up using a hash because I didn't want each accountability group to be completely seperate. I wanted every student to be part of one object (the cohort hash), and then assign each student a group from there.
+  #I ended up using a hash with each group as a key and an array of names as the values. This combined the usefulness of a hash for associative data and the usefulness of an array for accessing values by index.
 
 # What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
-  #I played around with the .sort_by and .select methods for outputting the data. I ended up using the .select method when I refactored my solution because it allowed me to present data that was more readable when printed to the console.
+  #I learned the importance of choosing the right data structure. When I refactored my solution I realized I needed to let the program determine the correct number of groups. In order to add that functionality I had to use a combination of arrays within my hash.
