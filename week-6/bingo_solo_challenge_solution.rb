@@ -1,4 +1,3 @@
-require 'pry'
 # A Nested Array to Model a Bingo Board SOLO CHALLENGE
 
 # I spent [#] hours on this challenge.
@@ -10,7 +9,7 @@ require 'pry'
   #Define a method called generate_number within BingoBoard class
   #Generate random letter from an array containing the letters b, i, n, g, o
   #Generate random number between 1 and 100 inclusive
-  #store the letter and number as seperate variables
+  #Store the letter and number as a variable
 
 # Check the called column for the number called.
   #Create a method called check_column
@@ -39,7 +38,7 @@ require 'pry'
   #END
 
 # Display a column to the console
-  #IF a number on the bingo board was replace
+  #IF a number on the bingo board was replaced
     #Puts the updated column to the console
 
 # Display the board to the console (prettily)
@@ -54,17 +53,18 @@ class BingoBoard
   end
 
   def generate_number
-    puts "The number is...#{@rand_number = [["b", "i", "n", "g", "o"].sample(1), rand(1..100)]}"
+    @rand_number = [["b", "i", "n", "g", "o"].sample(1), rand(1..100)]
+    puts "The number is .... #{@rand_number.join()}"
   end
 
   def check_column
-    if @rand_number[0].include?("b")
+    if @rand_number.include?("b")
       @bingo_board.map {|n| @rand_number[1] == n[0] ? n[0] = "x" : n[0] = n[0]}
-    elsif @rand_number[0].include?("i")
+    elsif @rand_number.include?("i")
       @bingo_board.map {|n| @rand_number[1] == n[1] ? n[1] = "x" : n[1] = n[1]}
-    elsif @rand_number[0].include?("n")
+    elsif @rand_number.include?("n")
       @bingo_board.map {|n| @rand_number[1] == n[2] ? n[2] = "x" : n[2] = n[2]}
-    elsif @rand_number[0].include?("g")
+    elsif @rand_number.include?("g")
       @bingo_board.map {|n| @rand_number[1] == n[3] ? n[3] = "x" : n[3] = n[3]}
     else
       @bingo_board.map {|n| @rand_number[1] == n[4] ? n[4] = "x" : n[4] = n[4]}
@@ -76,6 +76,38 @@ class BingoBoard
 end
 
 # Refactored Solution
+class BingoBoard
+
+  def initialize(board)
+    @bingo_board = board
+  end
+
+  def generate_number
+    @rand_number = [["b", "i", "n", "g", "o"].sample(1), rand(1..100)]
+    puts "The number is .... #{@rand_number.join()}"
+  end
+
+  def check_column
+    if @rand_number.include?("b")
+      @bingo_board.map {|n| @rand_number[1] == n[0] ? n[0] = "x" : n[0] = n[0]}
+    elsif @rand_number.include?("i")
+      @bingo_board.map {|n| @rand_number[1] == n[1] ? n[1] = "x" : n[1] = n[1]}
+    elsif @rand_number.include?("n")
+      @bingo_board.map {|n| @rand_number[1] == n[2] ? n[2] = "x" : n[2] = n[2]}
+    elsif @rand_number.include?("g")
+      @bingo_board.map {|n| @rand_number[1] == n[3] ? n[3] = "x" : n[3] = n[3]}
+    else
+      @bingo_board.map {|n| @rand_number[1] == n[4] ? n[4] = "x" : n[4] = n[4]}
+    end
+    puts "BINGO BOARD".center(20)
+    @bingo_board.each { |column| p column }
+  end
+
+  def bingo?
+
+  end
+
+end
 
 
 
