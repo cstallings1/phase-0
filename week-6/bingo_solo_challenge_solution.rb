@@ -103,10 +103,6 @@ class BingoBoard
     @bingo_board.each { |column| p column }
   end
 
-  def bingo?
-
-  end
-
 end
 
 
@@ -121,6 +117,20 @@ board = [[47, 44, 71, 8, 88],
 new_game = BingoBoard.new(board)
 new_game.generate_number
 new_game.check_column
+
+
+#DRIVER CODE TO CONTINUE
+# puts "Welcome to BINGO!"
+# new_game = BingoBoard.new(board)
+
+# puts "To draw a number...enter 'draw'"
+# puts "To quit playing...enter 'quit'"
+
+# until gets.chomp == "quit"
+#     new_game.generate_number
+#     new_game.check_column
+# end
+
 
 
 
