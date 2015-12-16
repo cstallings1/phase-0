@@ -45,60 +45,103 @@
   #print the revised board to the console
 
 # Initial Solution
-require "pry"
+# class BingoBoard
 
+#   def initialize(board)
+#     @bingo_board = board
+#   end
+
+#   def generate_number
+#     @letter = ["b", "i", "n", "g", "o"].sample(1).join
+#     @number = (1..100).to_a.sample(1).join
+#     puts "The number is .... #{@letter}#{@number}"
+#   end
+
+#   def check_column
+#     if @letter[0].include?("b")
+#       @bingo_board.map {|n| @number[0] == n[0] ? n[0] = "x" : n[0] = n[0]}
+#     elsif @letter[0].include?("i")
+#       @bingo_board.map {|n| @number[0] == n[1] ? n[1] = "x" : n[1] = n[1]}
+#     elsif @letter[0].include?("n")
+#       @bingo_board.map {|n| @number[0] == n[2] ? n[2] = "x" : n[2] = n[2]}
+#     elsif @letter[0].include?("g")
+#       @bingo_board.map {|n| @number[0] == n[3] ? n[3] = "x" : n[3] = n[3]}
+#     else
+#       @bingo_board.map {|n| @number[0] == n[4] ? n[4] = "x" : n[4] = n[4]}
+#     end
+#     puts "BINGO BOARD".center(20)
+#     @bingo_board.each { |column| p column }
+#   end
+
+# end
+
+#Refactored
+# class BingoBoard
+
+#   def initialize(board)
+#     @bingo_board = board
+#   end
+
+#   def generate_number
+#     @letter = ["b", "i", "n", "g", "o"].sample(1).join
+#     @number = (1..100).to_a.sample(1).join
+#     puts "The number is .... #{@letter}#{@number}"
+#   end
+
+#   def check_column
+#     if @letter[0].include?("b")
+#       @bingo_board.map {|n| @number[0] == n[0] ? n[0] = "x" : n[0] = n[0]}
+#     elsif @letter[0].include?("i")
+#       @bingo_board.map {|n| @number[0] == n[1] ? n[1] = "x" : n[1] = n[1]}
+#     elsif @letter[0].include?("n")
+#       @bingo_board.map {|n| @number[0] == n[2] ? n[2] = "x" : n[2] = n[2]}
+#     elsif @letter[0].include?("g")
+#       @bingo_board.map {|n| @number[0] == n[3] ? n[3] = "x" : n[3] = n[3]}
+#     else
+#       @bingo_board.map {|n| @number[0] == n[4] ? n[4] = "x" : n[4] = n[4]}
+#     end
+#     puts "BINGO BOARD".center(20)
+#     @bingo_board.each { |column| p column }
+#   end
+
+# end
+
+#DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
+# board = [[47, 44, 71, 8, 88],
+#         [22, 69, 75, 65, 73],
+#         [83, 85, 97, 89, 57],
+#         [25, 31, 96, 68, 51],
+#         [75, 70, 54, 80, 83]]
+
+# puts "Welcome to BINGO!"
+# new_game = BingoBoard.new(board)
+
+# puts "To draw a number...enter 'draw'"
+# puts "To quit playing...enter 'quit'"
+
+# until gets.chomp == "quit"
+#     new_game.generate_number
+#     new_game.check_column
+# end
+
+# Optional True Bingo Solution
 class BingoBoard
 
-  def initialize(board)
-    @bingo_board = board
-  end
+  def initialize
+    @bingo_hash = {
+      b: (1..15).to_a.sample(5),
+      i: (16..30).to_a.sample(5),
+      n: (31..45).to_a.sample(5),
+      g: (46..60).to_a.sample(5),
+      o: (61..75).to_a.sample(5)
+    }
+ end
 
   def generate_number
     @letter = ["b", "i", "n", "g", "o"].sample(1).join
-    @number = (1..100).to_a.sample(1).join
-    puts "The number is .... #{@letter}#{@number}"
-  end
-
-  def check_column
-    if @letter[0].include?("b")
-      @bingo_board.map {|n| @number[0] == n[0] ? n[0] = "x" : n[0] = n[0]}
-    elsif @letter[0].include?("i")
-      @bingo_board.map {|n| @number[0] == n[1] ? n[1] = "x" : n[1] = n[1]}
-    elsif @letter[0].include?("n")
-      @bingo_board.map {|n| @number[0] == n[2] ? n[2] = "x" : n[2] = n[2]}
-    elsif @letter[0].include?("g")
-      @bingo_board.map {|n| @number[0] == n[3] ? n[3] = "x" : n[3] = n[3]}
-    else
-      @bingo_board.map {|n| @number[0] == n[4] ? n[4] = "x" : n[4] = n[4]}
-    end
-    puts "BINGO BOARD".center(20)
-    @bingo_board.each { |column| p column }
-  end
-
-end
-
-#REFACTORED
-
-# Refactored Solution
-class BingoBoard
-
-  def initialize(board)
-    @bingo_board = board
-    @bingo_hash = {
-      b: [@bingo_board[0][0], @bingo_board[1][0], @bingo_board[2][0], @bingo_board[3][0], @bingo_board[4][0]],
-      i: [@bingo_board[0][1], @bingo_board[1][1], @bingo_board[2][1], @bingo_board[3][1], @bingo_board[4][1]],
-      n: [@bingo_board[0][2], @bingo_board[1][2], @bingo_board[2][2], @bingo_board[3][2], @bingo_board[4][2]],
-      g: [@bingo_board[0][3], @bingo_board[1][3], @bingo_board[2][3], @bingo_board[3][3], @bingo_board[4][3]],
-      o: [@bingo_board[0][4], @bingo_board[1][4], @bingo_board[2][4], @bingo_board[3][4], @bingo_board[4][4]]
-    }
-
-  end
-
-  def generate_number
-    # @letter = ["b", "i", "n", "g", "o"].sample(1).join
-    # @number = (1..100).to_a.sample(1).join
-    @letter = 'b'
-    @number = 47
+    @number = (1..75).to_a.sample(1).join
+    # @letter = 'b'
+    # @number = 1
     puts "The number is .... #{@letter}#{@number}"
   end
 
@@ -106,7 +149,7 @@ class BingoBoard
     @bingo_hash[@letter.to_sym].map! {|num| num == @number ? num = "x" : num = num}
 
     puts "BINGO BOARD".center(20)
-    @bingo_board = [[], [], [], [], []]
+    @bingo_board = [[],[],[],[],[]]
     @bingo_hash.each_value do |v|
       i = 0
       v.each do |v|
@@ -121,14 +164,14 @@ end
 
 
 #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
-board = [[47, 44, 71, 8, 88],
-        [22, 69, 75, 65, 73],
-        [83, 85, 97, 89, 57],
-        [25, 31, 96, 68, 51],
-        [75, 70, 54, 80, 83]]
+# board = [[47, 44, 71, 8, 88],
+#         [22, 69, 75, 65, 73],
+#         [83, 85, 97, 89, 57],
+#         [25, 31, 96, 68, 51],
+#         [75, 70, 54, 80, 83]]
 
 puts "Welcome to BINGO!"
-new_game = BingoBoard.new(board)
+new_game = BingoBoard.new
 
 puts "To draw a number...enter 'draw'"
 puts "To quit playing...enter 'quit'"
@@ -141,7 +184,14 @@ end
 
 #Reflection
 
-#
+# @bingo_hash = {
+#       b: [@bingo_board[0][0], @bingo_board[1][0], @bingo_board[2][0], @bingo_board[3][0], @bingo_board[4][0]],
+#       i: [@bingo_board[0][1], @bingo_board[1][1], @bingo_board[2][1], @bingo_board[3][1], @bingo_board[4][1]],
+#       n: [@bingo_board[0][2], @bingo_board[1][2], @bingo_board[2][2], @bingo_board[3][2], @bingo_board[4][2]],
+#       g: [@bingo_board[0][3], @bingo_board[1][3], @bingo_board[2][3], @bingo_board[3][3], @bingo_board[4][3]],
+#       o: [@bingo_board[0][4], @bingo_board[1][4], @bingo_board[2][4], @bingo_board[3][4], @bingo_board[4][4]]
+#     }
+
 
 
 
