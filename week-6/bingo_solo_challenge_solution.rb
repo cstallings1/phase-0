@@ -54,27 +54,30 @@ class BingoBoard
   end
 
   def generate_number
-    @rand_number = [["b", "i", "n", "g", "o"].sample(1), rand(1..100)]
-    puts "The number is .... #{@rand_number.join()}"
+    @letter = ["b", "i", "n", "g", "o"].sample(1).join
+    @number = (1..100).to_a.sample(1).join
+    puts "The number is .... #{@letter}#{@number}"
   end
 
   def check_column
-    if @rand_number[0].include?("b")
-      @bingo_board.map {|n| @rand_number[1] == n[0] ? n[0] = "x" : n[0] = n[0]}
-    elsif @rand_number[0].include?("i")
-      @bingo_board.map {|n| @rand_number[1] == n[1] ? n[1] = "x" : n[1] = n[1]}
-    elsif @rand_number[0].include?("n")
-      @bingo_board.map {|n| @rand_number[1] == n[2] ? n[2] = "x" : n[2] = n[2]}
-    elsif @rand_number[0].include?("g")
-      @bingo_board.map {|n| @rand_number[1] == n[3] ? n[3] = "x" : n[3] = n[3]}
+    if @letter[0].include?("b")
+      @bingo_board.map {|n| @number[0] == n[0] ? n[0] = "x" : n[0] = n[0]}
+    elsif @letter[0].include?("i")
+      @bingo_board.map {|n| @number[0] == n[1] ? n[1] = "x" : n[1] = n[1]}
+    elsif @letter[0].include?("n")
+      @bingo_board.map {|n| @number[0] == n[2] ? n[2] = "x" : n[2] = n[2]}
+    elsif @letter[0].include?("g")
+      @bingo_board.map {|n| @number[0] == n[3] ? n[3] = "x" : n[3] = n[3]}
     else
-      @bingo_board.map {|n| @rand_number[1] == n[4] ? n[4] = "x" : n[4] = n[4]}
+      @bingo_board.map {|n| @number[0] == n[4] ? n[4] = "x" : n[4] = n[4]}
     end
     puts "BINGO BOARD".center(20)
     @bingo_board.each { |column| p column }
   end
 
 end
+
+#REFACTORED
 
 # Refactored Solution
 class BingoBoard
@@ -88,38 +91,33 @@ class BingoBoard
       g: [@bingo_board[0][3], @bingo_board[1][3], @bingo_board[2][3], @bingo_board[3][3], @bingo_board[4][3]],
       o: [@bingo_board[0][4], @bingo_board[1][4], @bingo_board[2][4], @bingo_board[3][4], @bingo_board[4][4]]
     }
+
   end
 
   def generate_number
-    @letter = ["b", "i", "n", "g", "o"].sample(1).join
-    @number = (1..100).to_a.sample(1).join
+    # @letter = ["b", "i", "n", "g", "o"].sample(1).join
+    # @number = (1..100).to_a.sample(1).join
+    @letter = 'b'
+    @number = 47
     puts "The number is .... #{@letter}#{@number}"
   end
 
   def check_column
+    @bingo_hash[@letter.to_sym].map! {|num| num == @number ? num = "x" : num = num}
 
-    @bingo_hash[@letter.to_sym].map {|num| num = "x" if num == @number}
-
-    # if @rand_number[0].include?("b")
-    #   @bingo_board.map {|n| n[0] = "x" if @rand_number[1] == n[0]}
-    # elsif @rand_number[0].include?("i")
-    #   @bingo_board.map {|n| n[1] = "x" if @rand_number[1] == n[1]}
-    # elsif @rand_number[0].include?("n")
-    #   @bingo_board.map {|n| n[2] = "x" if @rand_number[1] == n[2]}
-    # elsif @rand_number[0].include?("g")
-    #   @bingo_board.map {|n| n[3] = "x" if @rand_number[1] == n[3]}
-    # else
-    #   @bingo_board.map {|n| n[4] = "x" if @rand_number[1] == n[4]}
-    # end
-    # puts "BINGO BOARD".center(20)
-    # @bingo_board.each { |column| p column }
     puts "BINGO BOARD".center(20)
-    @bingo_hash.each do |k,v|
-      v.map {|num| p num}
+    @bingo_board = [[], [], [], [], []]
+    @bingo_hash.each_value do |v|
+      i = 0
+      v.each do |v|
+        @bingo_board[i] << v
+        i += 1
+      end
     end
+    @bingo_board.each {|column| p column}
   end
-end
 
+end
 
 
 #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
@@ -141,8 +139,10 @@ until gets.chomp == "quit"
 end
 
 
-
-
 #Reflection
+
+#
+
+
 
 
