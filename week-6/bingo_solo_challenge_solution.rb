@@ -45,6 +45,7 @@
   #print the revised board to the console
 
 # Initial Solution
+require "pry"
 
 class BingoBoard
 
@@ -58,13 +59,13 @@ class BingoBoard
   end
 
   def check_column
-    if @rand_number.include?("b")
+    if @rand_number[0].include?("b")
       @bingo_board.map {|n| @rand_number[1] == n[0] ? n[0] = "x" : n[0] = n[0]}
-    elsif @rand_number.include?("i")
+    elsif @rand_number[0].include?("i")
       @bingo_board.map {|n| @rand_number[1] == n[1] ? n[1] = "x" : n[1] = n[1]}
-    elsif @rand_number.include?("n")
+    elsif @rand_number[0].include?("n")
       @bingo_board.map {|n| @rand_number[1] == n[2] ? n[2] = "x" : n[2] = n[2]}
-    elsif @rand_number.include?("g")
+    elsif @rand_number[0].include?("g")
       @bingo_board.map {|n| @rand_number[1] == n[3] ? n[3] = "x" : n[3] = n[3]}
     else
       @bingo_board.map {|n| @rand_number[1] == n[4] ? n[4] = "x" : n[4] = n[4]}
@@ -80,29 +81,43 @@ class BingoBoard
 
   def initialize(board)
     @bingo_board = board
+    @bingo_hash = {
+      b: [@bingo_board[0][0], @bingo_board[1][0], @bingo_board[2][0], @bingo_board[3][0], @bingo_board[4][0]],
+      i: [@bingo_board[0][1], @bingo_board[1][1], @bingo_board[2][1], @bingo_board[3][1], @bingo_board[4][1]],
+      n: [@bingo_board[0][2], @bingo_board[1][2], @bingo_board[2][2], @bingo_board[3][2], @bingo_board[4][2]],
+      g: [@bingo_board[0][3], @bingo_board[1][3], @bingo_board[2][3], @bingo_board[3][3], @bingo_board[4][3]],
+      o: [@bingo_board[0][4], @bingo_board[1][4], @bingo_board[2][4], @bingo_board[3][4], @bingo_board[4][4]]
+    }
   end
 
   def generate_number
-    @rand_number = [["b", "i", "n", "g", "o"].sample(1), rand(1..100)]
-    puts "The number is .... #{@rand_number.join()}"
+    @letter = ["b", "i", "n", "g", "o"].sample(1).join
+    @number = (1..100).to_a.sample(1).join
+    puts "The number is .... #{@letter}#{@number}"
   end
 
   def check_column
-    if @rand_number.include?("b")
-      @bingo_board.map {|n| @rand_number[1] == n[0] ? n[0] = "x" : n[0] = n[0]}
-    elsif @rand_number.include?("i")
-      @bingo_board.map {|n| @rand_number[1] == n[1] ? n[1] = "x" : n[1] = n[1]}
-    elsif @rand_number.include?("n")
-      @bingo_board.map {|n| @rand_number[1] == n[2] ? n[2] = "x" : n[2] = n[2]}
-    elsif @rand_number.include?("g")
-      @bingo_board.map {|n| @rand_number[1] == n[3] ? n[3] = "x" : n[3] = n[3]}
-    else
-      @bingo_board.map {|n| @rand_number[1] == n[4] ? n[4] = "x" : n[4] = n[4]}
-    end
-    puts "BINGO BOARD".center(20)
-    @bingo_board.each { |column| p column }
-  end
 
+    @bingo_hash[@letter.to_sym].map {|num| num = "x" if num == @number}
+
+    # if @rand_number[0].include?("b")
+    #   @bingo_board.map {|n| n[0] = "x" if @rand_number[1] == n[0]}
+    # elsif @rand_number[0].include?("i")
+    #   @bingo_board.map {|n| n[1] = "x" if @rand_number[1] == n[1]}
+    # elsif @rand_number[0].include?("n")
+    #   @bingo_board.map {|n| n[2] = "x" if @rand_number[1] == n[2]}
+    # elsif @rand_number[0].include?("g")
+    #   @bingo_board.map {|n| n[3] = "x" if @rand_number[1] == n[3]}
+    # else
+    #   @bingo_board.map {|n| n[4] = "x" if @rand_number[1] == n[4]}
+    # end
+    # puts "BINGO BOARD".center(20)
+    # @bingo_board.each { |column| p column }
+    puts "BINGO BOARD".center(20)
+    @bingo_hash.each do |k,v|
+      v.map {|num| p num}
+    end
+  end
 end
 
 
@@ -114,26 +129,16 @@ board = [[47, 44, 71, 8, 88],
         [25, 31, 96, 68, 51],
         [75, 70, 54, 80, 83]]
 
+puts "Welcome to BINGO!"
 new_game = BingoBoard.new(board)
-new_game.generate_number
-new_game.check_column
 
+puts "To draw a number...enter 'draw'"
+puts "To quit playing...enter 'quit'"
 
-#DRIVER CODE TO CONTINUE
-# puts "Welcome to BINGO!"
-# new_game = BingoBoard.new(board)
-
-# puts "To draw a number...enter 'draw'"
-# puts "To quit playing...enter 'quit'"
-
-# until gets.chomp == "quit"
-#     new_game.generate_number
-#     new_game.check_column
-# end
-
-
-
-
+until gets.chomp == "quit"
+    new_game.generate_number
+    new_game.check_column
+end
 
 
 
