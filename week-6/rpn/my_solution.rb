@@ -22,30 +22,33 @@
   #ELSE
     #Apply the operand to the last two elements in the new array
   #END
-
+require 'pry-byebug'
 # Initial Solution
 class RPNCalculator
 
   def evaluate(string)
-
+    return 0 if string == '0'
     evaluated_nums = []
-    array = string.split()
-    array.map! {|n| n.to_i == 0 ? n : n.to_i}
-    array.each do |n|
+    num_array = string.split()
+    num_array.map! {|n| n.to_i == 0 ? n : n.to_i}
+
+    num_array.each do |n|
       if n.is_a?(Integer)
         evaluated_nums << n
       else
-        evaluated_nums[0].send(n, evaluated_nums[1])
+        ans = []
+        ans << evaluated_nums.pop
+        ans.unshift(evaluated_nums.pop)
+        evaluated_nums << ans[0].send(n, ans[1])
       end
     end
-    # p evaluated_nums
+
+    return evaluated_nums.join.to_i
   end
 
 end
 
 rpn = RPNCalculator.new
-p rpn.evaluate('1 1 +')
-
 
 
 # 4. Refactored Solution
