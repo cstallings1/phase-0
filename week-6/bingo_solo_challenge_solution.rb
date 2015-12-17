@@ -41,7 +41,7 @@
 
 # Display the board to the console (prettily)
   #Print the new board to the console
-    #Iterate through each element of the board and print each element on a new line
+    #Iterate through each element of the board array and print each element on a new line
 
 # Initial Solution
 # class BingoBoard
@@ -135,58 +135,83 @@
 
 
 # Optional True Bingo Solution
-# class BingoBoard
+class BingoBoard
 
-#   def initialize
-#     @bingo_hash = {
-#       b: (1..15).to_a.sample(5),
-#       i: (16..30).to_a.sample(5),
-#       n: (31..45).to_a.sample(5),
-#       g: (46..60).to_a.sample(5),
-#       o: (61..75).to_a.sample(5)
-#     }
-#  end
+  def initialize
+    @bingo_hash = {
+      b: (1..15).to_a.sample(5),
+      i: (16..30).to_a.sample(5),
+      n: (31..45).to_a.sample(5),
+      g: (46..60).to_a.sample(5),
+      o: (61..75).to_a.sample(5)
+    }
+    @hash_values = @bingo_hash.values.flatten
+ end
 
-#   def generate_number
-#     @letter = ["b", "i", "n", "g", "o"].sample(1).join
-#     @number = (1..75).to_a.sample(1).join
-#     puts "The number is .... #{@letter}#{@number}"
-#   end
+  def generate_number
+    @letter = ["b", "i", "n", "g", "o"].sample(1).join
+    @number = @hash_values.delete_at(rand(@hash_values.length))
+    puts "The number is .... #{@letter}#{@number}"
+  end
 
-#   def check_column
-#     @bingo_hash[@letter.to_sym].map! {|num| num == @number ? num = "x" : num = num}
+  def check_column
+    @bingo_hash[@letter.to_sym].map! {|num| num == @number ? num = "x" : num = num}
+  end
 
-#     puts "BINGO BOARD".center(20)
-#     @bingo_board = [[],[],[],[],[]]
-#     @bingo_hash.each_value do |v|
-#       i = 0
-#       v.each do |v|
-#         @bingo_board[i] << v
-#         i += 1
-#       end
-#     end
-#     @bingo_board.each {|column| p column}
-#   end
+  def print_board
+    puts "BINGO BOARD".center(20)
+    @bingo_board = [[],[],[],[],[]]
+    @bingo_hash.each_value do |v|
+      i = 0
+      v.each do |v|
+        @bingo_board[i] << v
+        i += 1
+      end
+    end
+    @bingo_board.each {|column| p column}
+  end
 
-# end
+  def finished?
+    if @hash_values.empty?
+      puts "All numbers have been drawn. Thanks for playing."
+      exit
+    end
+  end
 
-#There is no free space yet - I haven't gotten to that part
+end
 
-#DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
+# There is no free space yet - I haven't gotten to that part
 
-# puts "Welcome to BINGO!"
-# new_game = BingoBoard.new
+# DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
 
-# puts "To draw a number...press 'enter'"
-# puts "To quit playing...enter 'quit'"
+puts "Welcome to BINGO!"
+new_game = BingoBoard.new
 
-# until gets.chomp == "quit"
-#     new_game.generate_number
-#     new_game.check_column
-# end
+puts "To draw a number...press 'enter'"
+puts "To quit playing...enter 'quit'"
+
+until gets.chomp == "quit"
+    new_game.generate_number
+    new_game.check_column
+    new_game.print_board
+    new_game.finished?
+end
 
 
-#Reflection
-
+# #Reflection
+# How difficult was pseudocoding this challenge? What do you think of your pseudocoding style?
+  #It wasn't too hard for me to break this problem down. I did end up adding functionality to my class that wasn't mentioned in the pseudocode because I didn't think about it until after I completed my initial solution. I think my style is organized but I think I could work on being more specific.
+# What are the benefits of using a class for this challenge?
+  #The bigget beneift for me was the ability to call instance variables from different methods within my class. It's also useful for creating a game and being able to call methods multiple times on one object without the game resetting every time a method is called.
+# How can you access coordinates in a nested array?
+  #You can access coordinates in a nested array by calling multiple indexes on the array. For example - array[0][2] would retrieve the third element within the first element of the array. You can also use iteration to evaluate nested arrays and hashes.
+# What methods did you use to access and modify the array?
+  #I used .sample to get a random number from an array, and I used .delete_at to remove the random number from the pool so it wouldn't get called again. To iterate through and modify the nested array (the board), I used .map.
+# Give an example of a new method you learned while reviewing the Ruby docs. Based on what you see in the docs, what purpose does it serve, and how is it called?
+  #.delete_at was a method I had seen before but hadn't used until this challenge. It deletes a given element from an array (I used it to remove the called numbers from the pool). You would call a.delete(2) to remove the element at index 2 from the array.
+# How did you determine what should be an instance variable versus a local variable?
+  #I actually didn't use any local variables in this challenge because I needed to be able to call the variables from all the methods in the class.
+# What do you feel is most improved in your refactored solution?
+  #I think the check_column method is more readable as a case statement instead of a bunch of elsif statements. I also think the refactored version works more like a real bingo game by removing the numbers from the pool as they are called.
 
 
