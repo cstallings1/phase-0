@@ -1,6 +1,6 @@
 # A Nested Array to Model a Bingo Board SOLO CHALLENGE
 
-# I spent [#] hours on this challenge.
+# I spent [8] hours on this challenge.
 
 
 # Release 0: Pseudocode
@@ -77,102 +77,36 @@
 #Refactored
 # class BingoBoard
 
-#   def initialize(board)
-#     @bingo_board = board
-#     @num_array = (1..100).to_a
-#   end
+  def initialize(board)
+    @bingo_board = board
+    @num_array = (1..100).to_a
+  end
 
-#    def generate_number
-#     @letter = ["b", "i", "n", "g", "o"].sample(1).join
-#     @number = @num_array.delete_at(rand(@num_array.length))
-#     puts "The number is .... #{@letter}#{@number}"
-#   end
-
-#   def check_column
-#     case @letter
-#     when "b"
-#       @bingo_board.map {|n| n[0] = "x" if @number == n[0]}
-#     when "i"
-#       @bingo_board.map {|n| n[1] = "x" if @number == n[1]}
-#     when "n"
-#       @bingo_board.map {|n| n[2] = "x" if @number == n[2]}
-#     when "g"
-#       @bingo_board.map {|n| n[3] = "x" if @number == n[3]}
-#     else
-#       @bingo_board.map {|n| n[4] = "x" if @number == n[4]}
-#     end
-#     puts "BINGO BOARD".center(20)
-#     @bingo_board.each { |column| p column }
-#   end
-
-#   def finished?
-#     if @num_array.empty?
-#       puts "All numbers have been drawn. Thanks for playing."
-#       exit
-#     end
-#   end
-
-# end
-
-# #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
-# board = [[47, 44, 71, 8, 88],
-#         [22, 69, 75, 65, 73],
-#         [83, 85, 97, 89, 57],
-#         [25, 31, 96, 68, 51],
-#         [75, 70, 54, 80, 83]]
-
-# puts "Welcome to BINGO!"
-# new_game = BingoBoard.new(board)
-
-# puts "To draw a number...press 'enter'"
-# puts "To quit playing...enter 'quit'"
-
-# until gets.chomp == "quit"
-#     new_game.generate_number
-#     new_game.check_column
-#     new_game.finished?
-# end
-
-
-# Optional True Bingo Solution
-class BingoBoard
-
-  def initialize
-    @bingo_hash = {
-      b: (1..15).to_a.sample(5),
-      i: (16..30).to_a.sample(5),
-      n: (31..45).to_a.sample(5),
-      g: (46..60).to_a.sample(5),
-      o: (61..75).to_a.sample(5)
-    }
-    @hash_values = @bingo_hash.values.flatten
- end
-
-  def generate_number
+   def generate_number
     @letter = ["b", "i", "n", "g", "o"].sample(1).join
-    @number = @hash_values.delete_at(rand(@hash_values.length))
+    @number = @num_array.delete_at(rand(@num_array.length))
     puts "The number is .... #{@letter}#{@number}"
   end
 
   def check_column
-    @bingo_hash[@letter.to_sym].map! {|num| num == @number ? num = "x" : num = num}
-  end
-
-  def print_board
-    puts "BINGO BOARD".center(20)
-    @bingo_board = [[],[],[],[],[]]
-    @bingo_hash.each_value do |v|
-      i = 0
-      v.each do |v|
-        @bingo_board[i] << v
-        i += 1
-      end
+    case @letter
+    when "b"
+      @bingo_board.map {|n| n[0] = "x" if @number == n[0]}
+    when "i"
+      @bingo_board.map {|n| n[1] = "x" if @number == n[1]}
+    when "n"
+      @bingo_board.map {|n| n[2] = "x" if @number == n[2]}
+    when "g"
+      @bingo_board.map {|n| n[3] = "x" if @number == n[3]}
+    else
+      @bingo_board.map {|n| n[4] = "x" if @number == n[4]}
     end
-    @bingo_board.each {|column| p column}
+    puts "BINGO BOARD".center(20)
+    @bingo_board.each { |column| p column }
   end
 
   def finished?
-    if @hash_values.empty?
+    if @num_array.empty?
       puts "All numbers have been drawn. Thanks for playing."
       exit
     end
@@ -180,22 +114,87 @@ class BingoBoard
 
 end
 
-# There is no free space yet - I haven't gotten to that part
+# #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
+board = [[47, 44, 71, 8, 88],
+        [22, 69, 75, 65, 73],
+        [83, 85, 97, 89, 57],
+        [25, 31, 96, 68, 51],
+        [75, 70, 54, 80, 83]]
+
+puts "Welcome to BINGO!"
+new_game = BingoBoard.new(board)
+
+puts "To draw a number...press 'enter'"
+puts "To quit playing...enter 'exit'"
+
+until gets.chomp == "exit"
+    new_game.generate_number
+    new_game.check_column
+    new_game.finished?
+end
+
+
+# Optional True Bingo Solution
+# class BingoBoard
+
+#   def initialize
+#     @bingo_hash = {
+#       b: (1..15).to_a.sample(5),
+#       i: (16..30).to_a.sample(5),
+#       n: (31..45).to_a.sample(4),
+#       g: (46..60).to_a.sample(5),
+#       o: (61..75).to_a.sample(5)
+#     }
+#     @bingo_hash[:n].insert(2, "x")
+#     @hash_values = @bingo_hash.values.flatten
+#  end
+
+#   def generate_number
+#     @letter = ["b", "i", "n", "g", "o"].sample(1).join
+#     @number = @hash_values.delete_at(rand(@hash_values.length))
+#     puts "The number is .... #{@letter}#{@number}"
+#   end
+
+#   def check_column
+#     @bingo_hash[@letter.to_sym].map! {|num| num == @number ? num = "x" : num = num}
+#   end
+
+#   def print_board
+#     puts "BINGO BOARD".center(20)
+#     @bingo_board = [[],[],[],[],[]]
+#     @bingo_hash.each_value do |v|
+#       i = 0
+#       v.each do |v|
+#         @bingo_board[i] << v
+#         i += 1
+#       end
+#     end
+#     @bingo_board.each {|column| p column}
+#   end
+
+#   def finished?
+#     if @hash_values.empty?
+#       puts "All numbers have been drawn. Thanks for playing."
+#       exit
+#     end
+#   end
+
+# end
 
 # DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
 
-puts "Welcome to BINGO!"
-new_game = BingoBoard.new
+# puts "Welcome to BINGO!"
+# new_game = BingoBoard.new
 
-puts "To draw a number...press 'enter'"
-puts "To quit playing...enter 'quit'"
+# puts "To draw a number...press 'enter'"
+# puts "To quit playing...enter 'exit'"
 
-until gets.chomp == "quit"
-    new_game.generate_number
-    new_game.check_column
-    new_game.print_board
-    new_game.finished?
-end
+# until gets.chomp == "exit"
+#     new_game.generate_number
+#     new_game.check_column
+#     new_game.print_board
+#     new_game.finished?
+# end
 
 
 # #Reflection
