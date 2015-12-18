@@ -1,15 +1,18 @@
 # A Nested Array to Model a Bingo Board SOLO CHALLENGE
 
-# I spent [8] hours on this challenge.
+# I spent [6] hours on this challenge.
 
 
 # Release 0: Pseudocode
 # OUTLINE:
+# Create an Initialize method that accepts an array for the board
+  #Set an instance variable equal to the argument passed as board
+
 # Create a method to generate a letter ( b, i, n, g, o) and a number (1-100)
   #Define a method called generate_number within BingoBoard class
-  #Generate random letter from an array containing the letters b, i, n, g, o
-  #Generate random number between 1 and 100 inclusive
-  #Store the letter and number as seperate variables
+    #Generate random letter from an array containing the letters b, i, n, g, o
+    #Generate random number between 1 and 100 inclusive
+    #Store the letter and number as seperate variables
 
 # Check the called column for the number called.
   #Create a method called check_column that checks for the random number in the column corresponding to the random letter
@@ -37,7 +40,8 @@
 
 # Display a column to the console
   #IF a number on the bingo board was replaced
-    #Puts the updated column to the console
+    #Iterate through the board array and puts the n element of each nested array to the console. (whichever column corresponds to the called letter)
+      #NOTE - This could be redundant and it might be better to just display the whole board.
 
 # Display the board to the console (prettily)
   #Print the new board to the console
@@ -75,7 +79,7 @@
 # end
 
 #Refactored
-# class BingoBoard
+class BingoBoard
 
   def initialize(board)
     @bingo_board = board
@@ -114,7 +118,7 @@
 
 end
 
-# #DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
+#DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
 board = [[47, 44, 71, 8, 88],
         [22, 69, 75, 65, 73],
         [83, 85, 97, 89, 57],
@@ -146,12 +150,12 @@ end
 #       o: (61..75).to_a.sample(5)
 #     }
 #     @bingo_hash[:n].insert(2, "x")
-#     @hash_values = @bingo_hash.values.flatten
+#     @number_pool = (1..75).to_a
 #  end
 
 #   def generate_number
 #     @letter = ["b", "i", "n", "g", "o"].sample(1).join
-#     @number = @hash_values.delete_at(rand(@hash_values.length))
+#     @number = @number_pool.delete_at(rand(@number_pool.length))
 #     puts "The number is .... #{@letter}#{@number}"
 #   end
 
@@ -160,8 +164,8 @@ end
 #   end
 
 #   def print_board
-#     puts "BINGO BOARD".center(20)
 #     @bingo_board = [[],[],[],[],[]]
+#     puts "BINGO BOARD".center(20)
 #     @bingo_hash.each_value do |v|
 #       i = 0
 #       v.each do |v|
@@ -173,7 +177,7 @@ end
 #   end
 
 #   def finished?
-#     if @hash_values.empty?
+#     if @number_pool.empty?
 #       puts "All numbers have been drawn. Thanks for playing."
 #       exit
 #     end
@@ -182,7 +186,6 @@ end
 # end
 
 # DRIVER CODE (I.E. METHOD CALLS) GO BELOW THIS LINE
-
 # puts "Welcome to BINGO!"
 # new_game = BingoBoard.new
 
@@ -201,9 +204,9 @@ end
 # How difficult was pseudocoding this challenge? What do you think of your pseudocoding style?
   #It wasn't too hard for me to break this problem down. I did end up adding functionality to my class that wasn't mentioned in the pseudocode because I didn't think about it until after I completed my initial solution. I think my style is organized but I think I could work on being more specific.
 # What are the benefits of using a class for this challenge?
-  #The bigget beneift for me was the ability to call instance variables from different methods within my class. It's also useful for creating a game and being able to call methods multiple times on one object without the game resetting every time a method is called.
+  #The biggest beneift for me was the ability to call instance variables from different methods within my class.
 # How can you access coordinates in a nested array?
-  #You can access coordinates in a nested array by calling multiple indexes on the array. For example - array[0][2] would retrieve the third element within the first element of the array. You can also use iteration to evaluate nested arrays and hashes.
+  #You can access coordinates in a nested array by calling multiple indexes on the array. For example - array[0][2] would retrieve the third element within the first element of the array. You can also use iteration to evaluate nested arrays and hashes. If you were using .each on a nested array, you could add a level of iteration within your original code block to iterate on the second level.
 # What methods did you use to access and modify the array?
   #I used .sample to get a random number from an array, and I used .delete_at to remove the random number from the pool so it wouldn't get called again. To iterate through and modify the nested array (the board), I used .map.
 # Give an example of a new method you learned while reviewing the Ruby docs. Based on what you see in the docs, what purpose does it serve, and how is it called?
