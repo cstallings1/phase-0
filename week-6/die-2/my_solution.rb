@@ -46,11 +46,8 @@ puts die.roll
 class Die
   def initialize(labels)
     @labels = labels
-    raise ArgumentError.new('Array must contain at least one element') if labels == []
-  end
-
-  def sides
     @sides = @labels.length
+    raise ArgumentError.new('Array must contain at least one element') if labels == []
   end
 
   def roll
