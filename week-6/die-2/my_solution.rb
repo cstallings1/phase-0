@@ -44,6 +44,7 @@ puts die.roll
 # Refactored Solution
 
 class Die
+  attr_reader :sides
   def initialize(labels)
     @labels = labels
     @sides = @labels.length
@@ -56,7 +57,7 @@ class Die
 end
 
 die = Die.new([1, 2, 3, 4, 5])
-puts die.sides
+# puts die.sides
 puts die.roll
 
 # Reflection
