@@ -49,9 +49,78 @@
 
 
 // Initial Code
+// var astronaut = {
+//   x: 0,
+//   y: 0,
+//   //Moves astronaut and martian
+//   move: function(direction) {
+//     if (direction === "right") {
+//       this.x += 2;
+//     } else if (direction === "left") {
+//       this.x -= 2;
+//     } else if (direction === "up") {
+//       this.y += 2;
+//     } else if (direction === "down") {
+//       this.y -= 2;
+//     } else {
+//       console.log("That was not a valid direction")
+//     }
+//     console.log("Astronuat is at " + this.x + "," + this.y);
+
+//     martian.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//     martian.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//     console.log("Martian is at " + martian.x + "," + martian.y);
+
+//     //Check if astronaut made it to the ship
+//     if ((this.x === spaceship.x) && (this.y === spaceship.y)) {
+//       console.log("You made it back to the ship safe and sound.")
+//     };
+
+//     //Check if martian captured astronaut
+//     if ((this.x === martian.x) && (this.y === martian.y)) {
+//       console.log("The martian captured you GAME OVER")
+//     };
+//   },
+
+//   //Fire the raygun by changing it's position
+//   shoot: function() {
+//     raygun.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//     raygun.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//     console.log("Raygun shoots at " + raygun.x + "," + raygun.y);
+
+//     if ((raygun.x === martian.x) && (raygun.y === martian.y)) {
+//       console.log("Congratulations you killed the martian! Now you can safely go back to the spaceship.")
+//     };
+//   }
+// };
+
+// var martian = {
+//   x: 0,
+//   y: 0
+// };
+
+// var spaceship = {
+//   x: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
+//   y: Math.floor(Math.random() * (5 - 1 + 1)) + 1
+// };
+
+// var raygun = {
+//   x: 0,
+//   y: 0
+// };
+
+// astronaut.move("right");
+// astronaut.shoot();
+// astronaut.move("left");
+// astronaut.shoot();
+// astronaut.move("up");
+// astronaut.shoot();
+
+// Refactored Code
 var astronaut = {
   x: 0,
   y: 0,
+  win: false,
   //Moves astronaut and martian
   move: function(direction) {
     if (direction === "right") {
@@ -67,41 +136,49 @@ var astronaut = {
     }
     console.log("Astronuat is at " + this.x + "," + this.y);
 
-    martian.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    martian.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    martian.x = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+    martian.y = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
     console.log("Martian is at " + martian.x + "," + martian.y);
 
     //Check if astronaut made it to the ship
     if ((this.x === spaceship.x) && (this.y === spaceship.y)) {
-      console.log("You made it back to the ship safe and sound.")
-    };
+      console.log("You made it back to the ship safe and sound.");
+      this.win = true;
+    }
 
     //Check if martian captured astronaut
-    if ((this.x === martian.x) && (this.y === martian.y)) {
+    if (this.x === martian.x && this.y === martian.y) {
       console.log("The martian captured you GAME OVER")
-    };
+    }
   },
 
   //Fire the raygun by changing it's position
   shoot: function() {
-    raygun.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    raygun.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    raygun.x = Math.floor(Math.random() * (martian.x - 1 + 1)) + 1;
+    raygun.y = Math.floor(Math.random() * (martian.y - 1 + 1)) + 1;
     console.log("Raygun shoots at " + raygun.x + "," + raygun.y);
 
-    if ((raygun.x === martian.x) && (raygun.y === martian.y)) {
-      console.log("Congratulations you killed the martian! Now you can safely go back to the spaceship.")
-    };
+    if (raygun.x === martian.x && raygun.y === martian.y) {
+      martian.health -= 50;
+      console.log("Martian health: " + martian.health)
+    }
+
+    if (martian.health == 0) {
+      console.log("Congratulations you killed the martian! Now you can safely go back to the spaceship.");
+      this.win = true;
+    }
   }
 };
 
 var martian = {
   x: 0,
-  y: 0
+  y: 0,
+  health: 100
 };
 
 var spaceship = {
-  x: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
-  y: Math.floor(Math.random() * (5 - 1 + 1)) + 1
+  x: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
+  y: Math.floor(Math.random() * (2 - 1 + 1)) + 1
 };
 
 var raygun = {
@@ -109,20 +186,19 @@ var raygun = {
   y: 0
 };
 
-astronaut.move("right");
-astronaut.shoot();
-astronaut.move("left");
-astronaut.shoot();
-astronaut.move("up");
-astronaut.shoot();
 
-
-
-// Refactored Code
-
-
-
-
+(astronaut.move('up'));
+(astronaut.move('down'));
+console.log((martian));
+(astronaut.shoot());
+console.log((spaceship));
+console.log((raygun));
+(astronaut.shoot());
+(astronaut.move('right'));
+(astronaut.move('left'));
+console.log((martian));
+console.log((spaceship));
+console.log((raygun));
 
 
 // Reflection
