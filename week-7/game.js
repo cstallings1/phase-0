@@ -4,7 +4,7 @@
 
 // Your mission description:
 // Overall mission:
-  //You're an astronaut and you need to get back to the spaceship. There is a martian trying to stop you so you have to shoot at him as you make your way back to safety.
+  //Make it back to the spaceship safely. There is a martian trying to stop you so you have to shoot at him as you make your way back to the spaceship.
 // Goals:
   //Get back to spaceship while avoiding the martian
   //Shoot the martian
@@ -23,16 +23,16 @@
 // Functions:
   //Move astronaut
     //This will change his coordinates
-    //If his coordiantes are the same as the martian, he dies
-    //If his coordinates are the same as the sapceship, he wins
+    //IF his coordiantes are the same as the martian, he dies
+    //IF his coordinates are the same as the sapceship, he wins
   //Shoot raygun
     //This changes the raygun coordinates
-    //If the raygun coordinates are the same as the martian you win
+    //IF the raygun coordinates are the same as the martian you win
   //Move martial
     //This will change his coordinates
 
 // Pseudocode
-//Create the astronaut object
+//Create astronaut object
   //Add properties:
     //Add x and y coordinates as propeties set to 0
     //shoot: a function that changes the x and y coordinates of the raygun
@@ -64,25 +64,30 @@ var astronaut = {
       this.y -= 2;
     } else {
       console.log("That was not a valid direction")
-    };
-    console.log("astronuat is at " + this.x + "," + this.y);
+    }
+    console.log("Astronuat is at " + this.x + "," + this.y);
+
     martian.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
     martian.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    console.log("martian is at " + martian.x + "," + martian.y);
+    console.log("Martian is at " + martian.x + "," + martian.y);
+
     //Check if astronaut made it to the ship
     if ((this.x === spaceship.x) && (this.y === spaceship.y)) {
       console.log("You made it back to the ship safe and sound.")
     };
+
     //Check if martian captured astronaut
     if ((this.x === martian.x) && (this.y === martian.y)) {
       console.log("The martian captured you GAME OVER")
     };
   },
-  //Fires the raygun by changing it's position
+
+  //Fire the raygun by changing it's position
   shoot: function() {
     raygun.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
     raygun.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    console.log("raygun shoots at " + raygun.x + "," + raygun.y);
+    console.log("Raygun shoots at " + raygun.x + "," + raygun.y);
+
     if ((raygun.x === martian.x) && (raygun.y === martian.y)) {
       console.log("Congratulations you killed the martian! Now you can safely go back to the spaceship.")
     };
