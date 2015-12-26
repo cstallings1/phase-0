@@ -141,7 +141,7 @@ var astronaut = {
     console.log("Martian is at " + martian.x + "," + martian.y);
 
     //Check if astronaut made it to the ship
-    if ((this.x === spaceship.x) && (this.y === spaceship.y)) {
+    if (this.x === spaceship.x && this.y === spaceship.y) {
       console.log("You made it back to the ship safe and sound.");
       this.win = true;
     }
