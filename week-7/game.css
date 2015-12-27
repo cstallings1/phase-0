@@ -1,13 +1,14 @@
 header {
+  width: 1000px;
   font-size: 3em;
   text-align: center;
-  color: white;
-  background-color: black;
-  margin-top: 20px;
+  color: blue;
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
 #canvas {
-  width: 1424px;
-  height: 700px;
   background-color: black;
+  margin-left: 73px;
+  /*margin-right: 200px;*/
 }

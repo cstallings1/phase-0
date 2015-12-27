@@ -13,22 +13,23 @@
   <header>
     Welcome to Space Adventures!
   </header>
-  <canvas id="canvas">
+  <canvas id="canvas" width="1300" height="600">
   </canvas>
   <script>
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
 
     var astronaut = {
-      color: "#0040FF",
-      width: 25,
-      height: 25,
       x: 0,
       y: 0,
-      speed: 250,
+      width: 50,
+      height: 50,
+      color: "#0040FF",
+      speed: 200,
       draw: function() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        var astronautImg = new Image();
+        astronautImg.src = "imgs/astronaut.png";
+        ctx.drawImage(astronautImg, this.x, this.y, this.width, this.height);
       },
     };
 
@@ -36,7 +37,6 @@
       x: 0,
       y: 0,
       health: 100,
-      color: "#00FF40",
       width: 25,
       height: 25,
       draw: function() {
@@ -48,12 +48,12 @@
     var spaceship = {
       x: Math.floor(Math.random() * (canvas.width - 1 + 1)) + 1,
       y: Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1,
-      color: "#FFFFFF",
-      width: 25,
-      height: 25,
+      width: 50,
+      height: 100,
       draw: function() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        var spaceshipImg = new Image();
+        spaceshipImg.src = "imgs/spaceship.png";
+        ctx.drawImage(spaceshipImg, this.x, this.y, this.width, this.height);
       }
     };
 
@@ -69,37 +69,41 @@
       }
     };
 
-    var keyStrokes = {};
+    var keysDown = {};
 
     addEventListener("keydown", function(e){
-      debugger
-      keyStrokes[e.keyCode] = true;
+      keysDown[e.keyCode] = true;
     }, false);
 
     addEventListener("keyup", function(e) {
-      delete keyStrokes[e.keyCode];
+      delete keysDown[e.keyCode];
     }, false);
 
     var newGame = function() {
-      astronaut.x = Math.floor(Math.random() * (canvas.width - 1 + 1)) + 1;
-      astronaut.y = Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1;
-      martian.x = Math.floor(Math.random() * (canvas.width - 1 + 1)) + 1;
-      martian.y = Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1;
-      spaceship.x = Math.floor(Math.random() * (canvas.width - 1 + 1)) + 1;
-      spaceship.y = Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1;
+      astronaut.x = canvas.width / 2;
+      astronaut.y = canvas.height / 2;
+      martian.x = Math.floor(Math.random() * (canvas.width - 50)) + 25;
+      martian.y = Math.floor(Math.random() * (canvas.height - 50)) + 25;
+      spaceship.x = Math.floor(Math.random() * (canvas.width - 100)) + 50;
+      spaceship.y = Math.floor(Math.random() * (canvas.height - 200)) + 100;
     };
 
     //Moves astronaut and martian
     var movement = function(modifier) {
-      if (keyStrokes.hasOwnProperty(39)) {
-        astronaut.x += speed * modifier; //Moves Right
-      } else if (keyStrokes.hasOwnProperty(37)) {
-        astronaut.x -= speed * modifier; //Moves left
-      } else if (keyStrokes.hasOwnProperty(38)) {
-        astronaut.y += speed * modifier; //Moves up
-      } else if (keyStrokes.hasOwnProperty(40)) {
-        astronaut.y -= speed * modifier; //Moves down
-      } else if (keyStrokes.hasOwnProperty(13)) {
+      ctx.clearRect((astronaut.x - 50), (astronaut.y - 50), 1300, 600);
+      if (39 in keysDown) {
+        astronaut.x += astronaut.speed * modifier; //Moves Right
+      }
+      if (37 in keysDown) {
+        astronaut.x -= astronaut.speed * modifier; //Moves left
+      }
+      if (40 in keysDown) {
+        astronaut.y += astronaut.speed * modifier; //Moves up
+      }
+      if (38 in keysDown) {
+        astronaut.y -= astronaut.speed * modifier; //Moves down
+      }
+      if (13 in keysDown) {
         raygun.x = Math.floor(Math.random() * (martian.x - 1 + 1)) + 1;
         raygun.y = Math.floor(Math.random() * (martian.y - 1 + 1)) + 1;
       }
@@ -108,8 +112,14 @@
       martian.y = Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1;
 
       //Check if astronaut made it to the ship
-      if (astronaut.x === spaceship.x && astronaut.y === spaceship.y) {
+      if (
+        astronaut.x <= (spaceship.x + 25)
+        && spaceship.x <= (astronaut.x + 25)
+        && astronaut.y <= (spaceship.y + 50)
+        && spaceship.y <= (astronaut.y + 50)
+        ) {
         alert("You made it back to the ship safe and sound.");
+        keysDown = {};
         newGame();
       }
 
@@ -131,7 +141,7 @@
 
     var render = function() {
       astronaut.draw();
-      martian.draw();
+      // martian.draw();
       spaceship.draw();
     };
 
@@ -143,7 +153,7 @@
 
       then = now;
 
-      requestAnimationFrame(movement);
+      requestAnimationFrame(gameLoop);
     };
 
     //Start the game
