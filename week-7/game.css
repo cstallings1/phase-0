@@ -1,14 +1,28 @@
-header {
+#main-title {
+  display: inline;
+  font-family: impact, Charcoal, sans-serif;
+  letter-spacing: 6px;
   width: 1000px;
   font-size: 3em;
   text-align: center;
-  color: blue;
-  margin-left: 200px;
-  margin-right: 200px;
+  color: #1A1EB2;
+  padding-left: 296px;
 }
 
 #canvas {
-  background-color: black;
+  background-image: url("imgs/stardust.png");
+  background-repeat: repeat;
   margin-left: 73px;
-  /*margin-right: 200px;*/
 }
+
+#start-game {
+  display: inline;
+  width: 150px;
+  margin-left: 76px;
+  font-family: impact Charcoal sans-serif;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+  background-color: #1A1EB2;
+}
+

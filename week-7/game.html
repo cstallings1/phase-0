@@ -11,7 +11,8 @@
 
 <body>
   <header>
-    Welcome to Space Adventures!
+    <p id="main-title">Welcome to Space Adventures!</p>
+    <p id="start-game">Start Game</p>
   </header>
   <canvas id="canvas" width="1300" height="600">
   </canvas>
@@ -24,8 +25,7 @@
       y: 0,
       width: 50,
       height: 50,
-      color: "#0040FF",
-      speed: 200,
+      speed: 100,
       draw: function() {
         var astronautImg = new Image();
         astronautImg.src = "imgs/astronaut.png";
@@ -36,36 +36,25 @@
     var martian = {
       x: 0,
       y: 0,
-      health: 100,
-      width: 25,
-      height: 25,
+      width: 50,
+      height: 115,
+      speed: 1.5,
       draw: function() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        var martianImg = new Image();
+        martianImg.src = "imgs/alien.png";
+        ctx.drawImage(martianImg, this.x, this.y, this.width, this.height);
       }
     };
 
     var spaceship = {
-      x: Math.floor(Math.random() * (canvas.width - 1 + 1)) + 1,
-      y: Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1,
+      x: 0,
+      y: 0,
       width: 50,
       height: 100,
       draw: function() {
         var spaceshipImg = new Image();
         spaceshipImg.src = "imgs/spaceship.png";
         ctx.drawImage(spaceshipImg, this.x, this.y, this.width, this.height);
-      }
-    };
-
-    var raygun = {
-      x: 0,
-      y: 0,
-      color: "#808080",
-      width: 8,
-      height: 8,
-      draw: function() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
       }
     };
 
@@ -88,9 +77,11 @@
       spaceship.y = Math.floor(Math.random() * (canvas.height - 200)) + 100;
     };
 
-    //Moves astronaut and martian
+    //Move astronaut
     var movement = function(modifier) {
       ctx.clearRect((astronaut.x - 50), (astronaut.y - 50), 1300, 600);
+      ctx.clearRect((martian.x - 50), (martian.y - 50), 1300, 600);
+
       if (39 in keysDown) {
         astronaut.x += astronaut.speed * modifier; //Moves Right
       }
@@ -108,40 +99,46 @@
         raygun.y = Math.floor(Math.random() * (martian.y - 1 + 1)) + 1;
       }
 
-      martian.x = Math.floor(Math.random() * (canvas.width - 1 + 1)) + 1;
-      martian.y = Math.floor(Math.random() * (canvas.height - 1 + 1)) + 1;
+      //Move martian towards astronaut
+      var run = astronaut.x - martian.x;
+      var rise = astronaut.y - martian.y;
+      var length = Math.sqrt((rise * rise) + (run * run));
+      var unitX = run / length;
+      var untitY = rise / length;
+
+      martian.x += unitX * martian.speed;
+      martian.y += untitY * martian.speed;
 
       //Check if astronaut made it to the ship
       if (
-        astronaut.x <= (spaceship.x + 25)
-        && spaceship.x <= (astronaut.x + 25)
-        && astronaut.y <= (spaceship.y + 50)
+        astronaut.x <= (spaceship.x + 30)
+        && spaceship.x <= (astronaut.x + 30)
+        && astronaut.y <= (spaceship.y + 70)
         && spaceship.y <= (astronaut.y + 50)
         ) {
         alert("You made it back to the ship safe and sound.");
         keysDown = {};
-        newGame();
-      }
-
-      //Check if raygun hit martian
-      if (raygun.x === martian.x && raygun.y === martian.y) {
-        martian.health -= 50;
-      }
-      if (martian.health == 0) {
-        console.log("Congratulations you killed the martian! Now you can safely go back to the spaceship.");
+        ctx.clearRect((spaceship.x - 100), (spaceship.y - 100), 1300, 600);
         newGame();
       }
 
      //Check if martian captured astronaut
-      if (astronaut.x === martian.x && astronaut.y === martian.y) {
+      if (
+        astronaut.x <= (martian.x + 50)
+        && martian.x <= (astronaut.x + 10)
+        && astronaut.y <= (martian.y + 100)
+        && martian.y <= (astronaut.y + 25)
+        ) {
         alert("The martian captured you GAME OVER");
+        keysDown = {};
+        ctx.clearRect((spaceship.x - 100), (spaceship.y - 100), 1300, 600);
         newGame();
        }
     };
 
     var render = function() {
       astronaut.draw();
-      // martian.draw();
+      martian.draw();
       spaceship.draw();
     };
 
@@ -158,9 +155,12 @@
 
     //Start the game
     var then = Date.now();
-    newGame();
-    gameLoop();
-
+    document.getElementById("start-game").onclick = function() {
+      newGame();
+      gameLoop();
+    };
+    // newGame();
+    // gameLoop();
   </script>
 </body>
 </html>
