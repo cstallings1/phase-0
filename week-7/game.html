@@ -104,8 +104,8 @@
       var unitX = run / length;
       var untitY = rise / length;
 
-      martian.x += unitX * martian.speed;
-      martian.y += untitY * martian.speed;
+      martian.x += martian.speed * unitX;
+      martian.y += martian.speed * untitY;
 
       //Check if astronaut made it to the ship
       if (
@@ -117,7 +117,7 @@
         alert("You made it back to the ship safe and sound.");
         keysDown = {};
         ctx.clearRect((spaceship.x - 100), (spaceship.y - 100), 1300, 600);
-        newGame();
+        // newGame();
       }
 
      //Check if martian captured astronaut
@@ -130,7 +130,7 @@
         alert("The martian captured you GAME OVER");
         keysDown = {};
         ctx.clearRect((spaceship.x - 100), (spaceship.y - 100), 1300, 600);
-        newGame();
+        // newGame();
        }
     };
 
@@ -157,8 +157,6 @@
       newGame();
       gameLoop();
     };
-    // newGame();
-    // gameLoop();
   </script>
 </body>
 </html>

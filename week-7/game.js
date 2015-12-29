@@ -15,7 +15,7 @@
   //Astronaut
     //Properties: x coordinate, y coordinate, win, shoot, move
   //Martian
-    //Properties: x coordinate, y coordinate
+    //Properties: x coordinate, y coordinate, health
   //Spaceship
     //Properties: x coordinate, y coordinate
   //Raygun
@@ -27,7 +27,7 @@
     //IF his coordinates are the same as the sapceship, he wins
   //Shoot raygun
     //This changes the raygun coordinates
-    //IF the raygun coordinates are the same as the martian you win
+    //IF the raygun coordinates are the same as the martian you injur him. After two hits he dies.
   //Move martial
     //This will change his coordinates
 
@@ -121,6 +121,7 @@ var astronaut = {
   x: 0,
   y: 0,
   win: false,
+
   //Moves astronaut and martian
   move: function(direction) {
     if (direction === "right") {
@@ -189,24 +190,20 @@ var raygun = {
 
 (astronaut.move('up'));
 (astronaut.move('down'));
-console.log((martian));
 (astronaut.shoot());
-console.log((spaceship));
-console.log((raygun));
 (astronaut.shoot());
 (astronaut.move('right'));
 (astronaut.move('left'));
-console.log((martian));
-console.log((spaceship));
-console.log((raygun));
+
+//Added Complexity to refactored solution:
 
 
 // Reflection
-//
-//
-//
-//
-//
-//
-//
-//
+// What was the most difficult part of this challenge?
+  //The most difficult part was keeping track of the functions within my objects. It got a little confusing but when I spaced things out and added comments it made it much easier to follow.
+// What did you learn about creating objects and functions that interact with one another?
+  //I solidifed my learning of how you can call a function that changes the properties of a completely different object. This was a little confusing to me until I started coding for this challenge. The idea of using 'this' to reference properties of the object your in was also solidified for me.
+// Did you learn about any new built-in methods you could use in your refactored solution? If so, what were they and how do they work?
+  //I had to use this in both solutions but I learned a lot more about Math.floor and Math.random for generating random numbes in JavaScript. It's not quite a straight forward as it was in Ruby. I mainly refactored for readability, I couldn't find any built in methods that really helped me refactor.
+// How can you access and manipulate properties of objects?
+  //You would access the value of a property by calling 'object.property'. If you wanted to change the value you would say 'object.property = new value'. You would use 'this.property' if you were already inside of your object.
