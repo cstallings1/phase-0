@@ -12,7 +12,7 @@
 <body>
   <header>
     <p id="main-title">Welcome to Space Adventures!</p>
-    <p id="start-game">Start Game</p>
+    <button id="start-game">Start Game</button>
   </header>
   <canvas id="canvas" width="1300" height="600">
   </canvas>
@@ -95,8 +95,6 @@
         astronaut.y -= astronaut.speed * modifier; //Moves down
       }
       if (13 in keysDown) {
-        raygun.x = Math.floor(Math.random() * (martian.x - 1 + 1)) + 1;
-        raygun.y = Math.floor(Math.random() * (martian.y - 1 + 1)) + 1;
       }
 
       //Move martian towards astronaut
