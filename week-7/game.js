@@ -48,7 +48,7 @@
   //Add x and y coordinates as propeties set to 0
 
 
-// Initial Code
+// Initial Code (MVP)
 // var astronaut = {
 //   x: 0,
 //   y: 0,
@@ -120,36 +120,47 @@
 var astronaut = {
   x: 0,
   y: 0,
-  win: false,
+  health: 100,
+  capturedMartians: 0,
 
-  //Moves astronaut and martian
+  //Move astronaut
   move: function(direction) {
     if (direction === "right") {
-      this.x += 2;
+      this.x += 5;
     } else if (direction === "left") {
-      this.x -= 2;
+      this.x -= 5;
     } else if (direction === "up") {
-      this.y += 2;
+      this.y += 5;
     } else if (direction === "down") {
-      this.y -= 2;
+      this.y -= 5;
     } else {
       console.log("That was not a valid direction")
     }
-    console.log("Astronuat is at " + this.x + "," + this.y);
+    console.log("Astronuat moves to " + this.x + "," + this.y);
 
-    martian.x = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
-    martian.y = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
-    console.log("Martian is at " + martian.x + "," + martian.y);
+    //Move martian
+    martian.x = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+    martian.y = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+    console.log("Martian moves to " + martian.x + "," + martian.y)
 
     //Check if astronaut made it to the ship
     if (this.x === spaceship.x && this.y === spaceship.y) {
       console.log("You made it back to the ship safe and sound.");
-      this.win = true;
     }
 
     //Check if martian captured astronaut
     if (this.x === martian.x && this.y === martian.y) {
       console.log("The martian captured you GAME OVER")
+    }
+
+    //Check if astronaut ran into black holes
+    if ((this.x === blackHoles.x1 && this.y === blackHoles.y1) || (this.x === blackHoles.x2 && this.y === blackHoles.y2)) {
+      this.health -= 50;
+      console.log("You've fallen into a black hole! Your health: " + this.health)
+    }
+
+    if (this.health === 0) {
+      console.log("You didn't make it out of the black hole - GAME OVER")
     }
   },
 
@@ -164,9 +175,10 @@ var astronaut = {
       console.log("Martian health: " + martian.health)
     }
 
-    if (martian.health == 0) {
-      console.log("Congratulations you killed the martian! Now you can safely go back to the spaceship.");
-      this.win = true;
+    if (martian.health === 0) {
+      this.capturedMartians += 1;
+      martian.health = 100;
+      console.log("Congratulations you captured a martian, but there's another one coming!.")
     }
   }
 };
@@ -187,15 +199,26 @@ var raygun = {
   y: 0
 };
 
+var blackHoles = {
+  x1: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
+  y1: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
+  x2: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
+  y2: Math.floor(Math.random() * (2 - 1 + 1)) + 1
+};
 
-(astronaut.move('up'));
-(astronaut.move('down'));
-(astronaut.shoot());
-(astronaut.shoot());
-(astronaut.move('right'));
-(astronaut.move('left'));
+astronaut.move('right');
+astronaut.move('left');
+astronaut.move('right');
+astronaut.shoot();
+astronaut.shoot();
+astronaut.move('down');
+astronaut.move('right');
+astronaut.shoot();
+astronaut.move('left');
+astronaut.move('up');
+astronaut.shoot();
+astronaut.move('down');
 
-//Added Complexity to refactored solution:
 
 
 // Reflection
