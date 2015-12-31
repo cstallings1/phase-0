@@ -23,23 +23,25 @@
 // Functions:
   //Move astronaut
     //This will change his coordinates
-    //IF his coordiantes are the same as the martian, he dies
-    //IF his coordinates are the same as the sapceship, he wins
+    //If his coordiantes are the same as the martian, he dies
+    //If his coordinates are the same as the sapceship, he wins
   //Shoot raygun
     //This changes the raygun coordinates
-    //IF the raygun coordinates are the same as the martian you injur him. After two hits he dies.
+    //If the raygun coordinates are the same as the martian you win
   //Move martial
     //This will change his coordinates
 
 // Pseudocode
 //Create astronaut object
   //Add properties:
-    //Add x and y coordinates as propeties set to 0
-    //shoot: a function that changes the x and y coordinates of the raygun
+    //Add x and y coordinates as properties set to 0
+    //shoot: a function that changes the x and y coordinates of the raygun by settng x and y to a random number.
       //IF the raygun coordinates are the same as the martian - you win
-    //move: a function that changes x and y coordinates of the astronaut and the martian
-      //IF the coordinates are the same as the martians - you lose
-      //IF the coordinates are the same as the spaceship - you win
+    //move: a function that changes x and y coordinates of the astronaut and the martian.
+      //The astronaut moves right, left, up, or down based on user input
+      //The martian moves by setting x and y equal to a random number
+      //IF the astronaut coordinates are the same as the martians - you lose
+      //IF the astronaut coordinates are the same as the spaceship - you win
 //Create the martian object
   //Add x and y coordinates as propeties set to 0
 //Create the spaceship object
@@ -126,21 +128,21 @@ var astronaut = {
   //Move astronaut
   move: function(direction) {
     if (direction === "right") {
-      this.x += 5;
+      this.x += 2;
     } else if (direction === "left") {
-      this.x -= 5;
+      this.x -= 2;
     } else if (direction === "up") {
-      this.y += 5;
+      this.y += 2;
     } else if (direction === "down") {
-      this.y -= 5;
+      this.y -= 2;
     } else {
       console.log("That was not a valid direction")
     }
     console.log("Astronuat moves to " + this.x + "," + this.y);
 
     //Move martian
-    martian.x = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
-    martian.y = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+    martian.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    martian.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
     console.log("Martian moves to " + martian.x + "," + martian.y)
 
     //Check if astronaut made it to the ship
@@ -166,8 +168,8 @@ var astronaut = {
 
   //Fire the raygun by changing it's position
   shoot: function() {
-    raygun.x = Math.floor(Math.random() * (martian.x - 1 + 1)) + 1;
-    raygun.y = Math.floor(Math.random() * (martian.y - 1 + 1)) + 1;
+    raygun.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    raygun.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
     console.log("Raygun shoots at " + raygun.x + "," + raygun.y);
 
     if (raygun.x === martian.x && raygun.y === martian.y) {
@@ -190,8 +192,8 @@ var martian = {
 };
 
 var spaceship = {
-  x: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
-  y: Math.floor(Math.random() * (2 - 1 + 1)) + 1
+  x: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
+  y: Math.floor(Math.random() * (5 - 1 + 1)) + 1
 };
 
 var raygun = {
@@ -200,10 +202,10 @@ var raygun = {
 };
 
 var blackHoles = {
-  x1: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
-  y1: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
-  x2: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
-  y2: Math.floor(Math.random() * (2 - 1 + 1)) + 1
+  x1: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
+  y1: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
+  x2: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
+  y2: Math.floor(Math.random() * (5 - 1 + 1)) + 1
 };
 
 astronaut.move('right');
@@ -211,22 +213,25 @@ astronaut.move('left');
 astronaut.move('right');
 astronaut.shoot();
 astronaut.shoot();
-astronaut.move('down');
+astronaut.move('up');
 astronaut.move('right');
 astronaut.shoot();
-astronaut.move('left');
 astronaut.move('up');
+astronaut.move('right');
 astronaut.shoot();
 astronaut.move('down');
 
 
+//Release 6:
+//I made a simplified version of this game with graphics using HTML5 and JavaScript:
+//http://cstallings1.github.io/javascript-game/index.html
 
 // Reflection
 // What was the most difficult part of this challenge?
-  //The most difficult part was keeping track of the functions within my objects. It got a little confusing but when I spaced things out and added comments it made it much easier to follow.
+  //The most difficult part was figuring out how to create a game loop for my graphical verson of the game. After some research I found two different methods that seemed to work well and picked one of those.
 // What did you learn about creating objects and functions that interact with one another?
-  //I solidifed my learning of how you can call a function that changes the properties of a completely different object. This was a little confusing to me until I started coding for this challenge. The idea of using 'this' to reference properties of the object your in was also solidified for me.
+  //I solidifed my learning of how you can call a function that changes the properties of a completely different object. This was a little confusing to me until I started coding for this challenge. Using 'this' to reference properties of the object was also solidified for me.
 // Did you learn about any new built-in methods you could use in your refactored solution? If so, what were they and how do they work?
-  //I had to use this in both solutions but I learned a lot more about Math.floor and Math.random for generating random numbes in JavaScript. It's not quite a straight forward as it was in Ruby. I mainly refactored for readability, I couldn't find any built in methods that really helped me refactor.
+  //I had to use this in both solutions but I learned a lot more about Math.floor and Math.random for generating random numbes in JavaScript. It's not quite as straight forward as it was in Ruby. I mainly refactored for readability and added complexity, I couldn't find any built in methods that really helped me refactor because I mainly used control flow to direct the path of the game.
 // How can you access and manipulate properties of objects?
   //You would access the value of a property by calling 'object.property'. If you wanted to change the value you would say 'object.property = new value'. You would use 'this.property' if you were already inside of your object.
