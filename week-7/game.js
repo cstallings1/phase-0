@@ -224,7 +224,10 @@ astronaut.move('down');
 
 //Release 6:
 //I made a simplified version of this game with graphics using HTML5 and JavaScript:
-//http://cstallings1.github.io/javascript-game/index.html
+//Link to game on personal site: http://cstallings1.github.io/javascript-game/index.html
+//Raw css and html code on GitHub:
+  //https://github.com/cstallings1/cstallings1.github.io/blob/master/javascript-game/index.html
+  //https://github.com/cstallings1/cstallings1.github.io/blob/master/stylesheets/game.css
 
 // Reflection
 // What was the most difficult part of this challenge?
