@@ -115,7 +115,7 @@ function median(array){
 //As a user I want to know the number that is exactly halfway in my dataset.
 
 //Test Summary:
-//All tests passed except for test 5 and test 6 for the mean function.
+//All tests passed except for test 5 and 6 for the mean function in the refactored version, the initial solution passed these tests.
 //The logic was correct, but in our return statement we used a variable called 'array' which was never defined in the function.
 //We should have used the variable name 'numbersArray' because that was defined in the function.
 //This resulted in the following error: 'ReferenceError: array is not defined'

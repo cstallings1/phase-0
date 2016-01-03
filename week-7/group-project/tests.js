@@ -6,6 +6,7 @@ function sum(numbersArray){
   });
 };
 
+
 function mean(numbersArray){
   return (sum(array)/(array.length));
 };
