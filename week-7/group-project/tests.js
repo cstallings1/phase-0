@@ -1,5 +1,25 @@
 
 // Add the finished solution here when you receive it.
+function sum(numbersArray){
+  return numbersArray.reduce(function(sum, x){
+    return sum + x;
+  });
+};
+
+function mean(numbersArray){
+  return (sum(array)/(array.length));
+};
+
+function median(array){
+  array.sort(function(a, b){return a-b});
+  var midIndex = array.length / 2;
+  if (array.length % 2 === 0){
+    return (array[midIndex] + array[(midIndex - 1)])/2;
+  } else {
+    return array[Math.floor(midIndex)];
+  }
+};
+
 // __________________________________________
 // Tests:  Do not alter code below this line.
 
