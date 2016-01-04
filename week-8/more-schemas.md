@@ -2,7 +2,7 @@
 ![One-to-one schema design](imgs/8.5.2.png "One-to-one")
 I used to work in the wine industry so I used the example of wine brands as a one-to-one relationship. There are many wine brands out there and the most important attributes are the brand name and supplier. There is a long list of other attributes such as distributor, vintage, category, etc. but this information would often be NULL. Instead of having a lot of missing information in the brands table, I created a table for additional information where these attributes could go. This is a one-to-one relationship beause each entry in the additional_info table corresponds to one entry in the brands table.
 
-####Challenge 5 Release 4:
+####Challenge 8.5 Release 4:
 ![Many-to-many schema design](imgs/8.5.4.png "Many-to-many")
 
 ####Reflection:
