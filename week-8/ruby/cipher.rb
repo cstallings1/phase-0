@@ -86,43 +86,82 @@
 # end # This ends the method
 
 # Your Refactored Solution
-def dr_evils_cipher(coded_message)
+# def dr_evils_cipher(coded_message)
 
-  coded_message = coded_message.downcase.split("")
-  decoded_sentence = []
+#   coded_message = coded_message.downcase.split("")
+#   decoded_sentence = []
 
-  alphabet = ("a".."z").to_a
-  cipher = {}
-  alphabet.rotate(4).each_with_index do |l, i|
-    cipher[l] = alphabet[i]
+#   alphabet = ("a".."z").to_a
+#   cipher = {}
+#   alphabet.rotate(4).each_with_index do |l, i|
+#     cipher[l] = alphabet[i]
+#   end
+
+#   special_chars = ["@", "#", "$", "%", "^", "&", "*"]
+
+#   coded_message.each do |char|
+#     if cipher.has_key?(char)
+#       decoded_sentence << cipher[char]
+#     elsif special_chars.include?(char)
+#       decoded_sentence << " "
+#     elsif char.is_a?(Integer)
+#       decoded_sentence << char
+#     else
+#       decoded_sentence << char
+#     end
+#   end
+#   decoded_sentence = decoded_sentence.join("")
+# end
+
+# Make Solution More Object Oriented
+class Cipher
+  def initialize(coded_message)
+    @coded_message = coded_message.downcase.split("")
+    @decoded_sentence = []
+    letter_converter(4)
   end
 
-  special_chars = ["@", "#", "$", "%", "^", "&", "*"]
-
-  coded_message.each do |char|
-    if cipher.has_key?(char)
-      decoded_sentence << cipher[char]
-    elsif special_chars.include?(char)
-      decoded_sentence << " "
-    elsif char.is_a?(Integer)
-      decoded_sentence << char
-    else
-      decoded_sentence << char
+  def letter_converter(n)
+    alphabet = ("a".."z").to_a
+    cipher = {}
+    alphabet.rotate(n).each_with_index do |l, i|
+      cipher[l] = alphabet[i]
     end
+
+    @coded_message.each {|char| @decoded_sentence << cipher[char] if cipher.has_key?(char)}
+
+    convert_punctuation
   end
-  decoded_sentence = decoded_sentence.join("")
+
+  def convert_punctuation
+    special_chars = ["@", "#", "$", "%", "^", "&", "*"]
+    @coded_message.each {|char| @decoded_sentence << " " if special_chars.include?(char)}
+
+    translate_message
+  end
+
+  def translate_message
+    @decoded_sentence = @decoded_sentence.join("")
+  end
+
 end
 
 
 # Driver Test Code:
-p dr_evils_cipher("m^aerx%e&gsoi!") == "i want a coke!" #This is driver test code and should print true
-# Find out what Dr. Evil is saying below and turn it into driver test code as well. Driver test code statements should always return "true."
-p dr_evils_cipher("syv%ievpc#exxiqtxw&ex^e$xvegxsv#fieq#airx%xlvsykl$wizivep#tvitevexmsrw.#tvitevexmsrw#e*xlvsykl#k&aivi%e@gsqtpixi&jempyvi.
-&fyx%rsa,$pehmiw@erh#kirxpiqir,%ai%jmreppc@lezi&e&asvomrk%xvegxsv#fieq,^almgl^ai^wlepp%gepp@tvitevexmsr^l")
-p dr_evils_cipher("csy&wii,@m'zi@xyvrih$xli*qssr$mrxs&alex@m#pmoi%xs#gepp%e^hiexl#wxev.")
-p dr_evils_cipher("qmrm#qi,*mj^m#iziv^pswx#csy#m^hsr'x%orsa^alex@m%asyph^hs.
-@m'h%tvsfefpc%qszi$sr%erh*kix#ersxliv$gpsri@fyx*xlivi@asyph^fi@e^15&qmryxi@tivmsh%xlivi$alivi*m*asyph&nywx^fi$mrgsrwspefpi.")
-p dr_evils_cipher("alc@qeoi*e$xvmppmsr^alir#ai*gsyph%qeoi...#fmppmsrw?")
+dr_evils_cipher = Cipher.new("syv%ievpc#exxiqtxw&ex^e$xvegxsv#fieq#airx%xlvsykl$wizivep#tvitevexmsrw.#tvitevexmsrw#e*xlvsykl#k&aivi%e@gsqtpixi&jempyvi.
+# &fyx%rsa,$pehmiw@erh#kirxpiqir,%ai%jmreppc@lezi&e&asvomrk%xvegxsv#fieq,^almgl^ai^wlepp%gepp@tvitevexmsr^l")
+p dr_evils_cipher
+
+
+
+# p dr_evils_cipher("m^aerx%e&gsoi!") == "i want a coke!" #This is driver test code and should print true
+# # Find out what Dr. Evil is saying below and turn it into driver test code as well. Driver test code statements should always return "true."
+# p dr_evils_cipher("syv%ievpc#exxiqtxw&ex^e$xvegxsv#fieq#airx%xlvsykl$wizivep#tvitevexmsrw.#tvitevexmsrw#e*xlvsykl#k&aivi%e@gsqtpixi&jempyvi.
+# &fyx%rsa,$pehmiw@erh#kirxpiqir,%ai%jmreppc@lezi&e&asvomrk%xvegxsv#fieq,^almgl^ai^wlepp%gepp@tvitevexmsr^l")
+# p dr_evils_cipher("csy&wii,@m'zi@xyvrih$xli*qssr$mrxs&alex@m#pmoi%xs#gepp%e^hiexl#wxev.")
+# p dr_evils_cipher("qmrm#qi,*mj^m#iziv^pswx#csy#m^hsr'x%orsa^alex@m%asyph^hs.
+# @m'h%tvsfefpc%qszi$sr%erh*kix#ersxliv$gpsri@fyx*xlivi@asyph^fi@e^15&qmryxi@tivmsh%xlivi$alivi*m*asyph&nywx^fi$mrgsrwspefpi.")
+# p dr_evils_cipher("alc@qeoi*e$xvmppmsr^alir#ai*gsyph%qeoi...#fmppmsrw?")
 
 # Reflection
 # Keep your reflection limited to 10-15 minutes!
