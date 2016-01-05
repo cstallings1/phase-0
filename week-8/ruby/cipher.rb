@@ -87,62 +87,31 @@
 
 # Your Refactored Solution
 def dr_evils_cipher(coded_message)
-  # Makes all letters in coded_message lowercase and splits each char into elements in an array. Sets the array equal to input variable.
-  coded_message = coded_message.downcase.split("")
 
-  # Creates an empty array and sets it to a variable decoded_sentence.
+  coded_message = coded_message.downcase.split("")
   decoded_sentence = []
 
-  # Creates new hash, ciper. Sets each value to a letter from a to z. Sets each key to the letter 4 characters after the given value.
   alphabet = ("a".."z").to_a
   cipher = {}
   alphabet.rotate(4).each_with_index do |l, i|
     cipher[l] = alphabet[i]
   end
 
-  # Iterates through each letter in the coded message.
-  coded_message.each do |coded_char|
-    # sets found_match to false.
-    found_match = false
-    #Iterates through each key in the ciper hash and sets key to var y.
-    cipher.each_key do |key|
-      # Evaluates if the current letter in the coded message (var coded_char) is equal to the hash key (var key).
-      if coded_char == key
-        # When the coded letter equals the hash key, add the value of that key to the decoded_sentence array.
-        decoded_sentence << cipher[key]
-        # found_math is now true.
-        found_match = true
-        # Breaks out of the current loop and goes on to evaluate the next letter in the coded message.
-        break
-      # Check if the coded letter is a special character as listed below.
-      elsif coded_char == "@" || coded_char == "#" || coded_char == "$" || coded_char == "%"|| coded_char == "^" || coded_char == "&"|| coded_char =="*"
-        # If it is, add a blank space to the decoded_sentence array.
-        decoded_sentence << " "
-        # Change found_match value to true
-        found_match = true
-        # Break out of the loop and evaluate the next letter in the coded message.
-        break
-      # Check if the current letter in the coded message is a number 1 to 9 by converting the range of numbers to an array.
-      elsif (0..9).to_a.include?(coded_char)
-        # If it is a number 1 - 9, add the number to the decoded_sentence.
-        decoded_sentence << coded_char
-        # Change found_match value to true.
-        found_match = true
-        # Break out of the loop.
-        break
-      end # This ends the if statement.
-    end # This ends the iteration through the ciper keys.
-    # Check if the value of found_match is false.
-    if not found_match
-      # If it is false, add the coded letter to the decoded_sentence.
-      decoded_sentence << coded_char
-    end # End the if statement
-  end # This ends the iteration through the coded message.
-  # Join each element in the decoded_sentence array so it's a string and return string.
+  special_chars = ["@", "#", "$", "%", "^", "&", "*"]
+
+  coded_message.each do |char|
+    if cipher.has_key?(char)
+      decoded_sentence << cipher[char]
+    elsif special_chars.include?(char)
+      decoded_sentence << " "
+    elsif char.is_a?(Integer)
+      decoded_sentence << char
+    else
+      decoded_sentence << char
+    end
+  end
   decoded_sentence = decoded_sentence.join("")
-end # This ends the method
-
-
+end
 
 
 # Driver Test Code:
