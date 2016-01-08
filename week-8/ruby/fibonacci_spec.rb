@@ -1,4 +1,4 @@
-require_relative "ruby_review_fib"
+require_relative "fib"
 
 
 def random_fibonacci
