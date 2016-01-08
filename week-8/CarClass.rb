@@ -54,13 +54,125 @@
     #Return a statement saying you've stopped the car
 
 # 3. Initial Solution
-class Car
+# class Car
+#   def initialize(model, color)
+#     @model = model
+#     @color = color
+#     @speed = 0
+#     @distance = 0
+#     @pizzas = []
+#   end
 
+#   def drive(distance)
+#     @distance += distance
+#     puts "You have driven #{@distance} miles."
+#   end
+
+#   def check_speed
+#     puts "You are driving #{@speed} MPH."
+#   end
+
+#   def turn(direction)
+#     puts "You have turned #{direction}."
+#   end
+
+#   def accelerate(desired_speed)
+#     @speed = desired_speed
+#     puts "You are now driving at #{@speed} MPH."
+#   end
+
+#   def decelerate(desired_speed)
+#     @speed = desired_speed
+#     puts "You are now driving at #{@speed} MPH."
+#   end
+
+#   def distance_traveled
+#     puts "You have traveled #{@distance} miles."
+#   end
+
+#   def stop
+#     @speed = 0
+#     puts "You've stopped the car."
+#   end
+
+#   def add_pizza(type)
+#     @pizzas << (Pizza.new(type))
+#     puts "Added a #{type} pizza."
+#   end
+
+#   def deliver_pizza
+#     puts "Pizza delivery. You ordered a #{@pizzas[0].type} pizza. That'll be $15."
+#     @pizzas.shift
+#   end
+# end
+
+# class Pizza
+#   attr_reader :type
+
+#   def initialize(type)
+#     @type = type
+#   end
+# end
+
+# # 1. DRIVER TESTS GO BELOW THIS LINE
+# # Create a new car of your desired model and type
+# my_car = Car.new("Hyundai", "Elantra")
+# #Pizza orders:
+# my_car.add_pizza("cheese")
+# my_car.add_pizza("pepperoni")
+# my_car.add_pizza("vegetarian")
+
+# # Drive .25 miles (speed limit is 25 mph)
+# my_car.accelerate(25)
+# my_car.drive(0.25)
+# # At the stop sign, turn right
+# my_car.stop
+# my_car.turn("right")
+# # Drive 1.5 miles (speed limit is 35 mph)
+# my_car.accelerate(35)
+# my_car.drive(1.5)
+# # At the school zone, check your speed
+# my_car.check_speed
+# # Slow down to speed limit 15 mph
+# my_car.decelerate(15)
+# # Stop at your destination
+# my_car.stop
+# # Log your total distance travelled
+# my_car.distance_traveled
+# #Deliver pizza
+# my_car.deliver_pizza
+# # Drive .25 miles more miles
+# my_car.drive(0.25)
+# # At the stop sign, turn left
+# my_car.stop
+# my_car.turn("left")
+# # Stop at your destination
+# my_car.stop
+# # Log your total distance travelled
+# my_car.distance_traveled
+# #Deliver pizza
+# my_car.deliver_pizza
+# # Drive 1.4 miles (speed limit is 35 mph)
+# my_car.accelerate(35)
+# my_car.drive(1.4)
+# # Stop at your destination
+# my_car.stop
+# # Log your total distance travelled
+# my_car.distance_traveled
+# #Deliver pizza
+# my_car.deliver_pizza
+
+
+
+
+# 4. Refactored Solution
+class Car
   def initialize(model, color)
     @model = model
     @color = color
     @speed = 0
     @distance = 0
+    @pizzas = []
   end
 
   def drive(distance)
@@ -68,7 +180,7 @@ class Car
     puts "You have driven #{@distance} miles."
   end
 
-  def speed
+  def check_speed
     puts "You are driving #{@speed} MPH."
   end
 
@@ -92,16 +204,27 @@ class Car
 
   def stop
     @speed = 0
-    puts "You've stopped the car. Speed is #{@speed} MPH."
+    puts "You've stopped the car."
   end
 
+  def add_pizza(type)
+    @pizzas << (Pizza.new(type))
+    puts "Added a #{type} pizza."
+  end
+
+  def deliver_pizza
+    puts "Pizza delivery. You ordered a #{@pizzas[0].type} pizza. That'll be $15."
+    @pizzas.shift
+  end
 end
 
+class Pizza
+  attr_reader :type
 
-
-
-# 4. Refactored Solution
-
+  def initialize(type)
+    @type = type
+  end
+end
 
 
 
@@ -110,6 +233,11 @@ end
 # # 1. DRIVER TESTS GO BELOW THIS LINE
 # Create a new car of your desired model and type
 my_car = Car.new("Hyundai", "Elantra")
+#Pizza orders:
+my_car.add_pizza("cheese")
+my_car.add_pizza("pepperoni")
+my_car.add_pizza("vegetarian")
+
 # Drive .25 miles (speed limit is 25 mph)
 my_car.accelerate(25)
 my_car.drive(0.25)
@@ -120,14 +248,26 @@ my_car.turn("right")
 my_car.accelerate(35)
 my_car.drive(1.5)
 # At the school zone, check your speed
-my_car.speed
+my_car.check_speed
 # Slow down to speed limit 15 mph
 my_car.decelerate(15)
+# Stop at your destination
+my_car.stop
+# Log your total distance travelled
+my_car.distance_traveled
+#Deliver pizza
+my_car.deliver_pizza
 # Drive .25 miles more miles
 my_car.drive(0.25)
 # At the stop sign, turn left
 my_car.stop
 my_car.turn("left")
+# Stop at your destination
+my_car.stop
+# Log your total distance travelled
+my_car.distance_traveled
+#Deliver pizza
+my_car.deliver_pizza
 # Drive 1.4 miles (speed limit is 35 mph)
 my_car.accelerate(35)
 my_car.drive(1.4)
@@ -135,6 +275,9 @@ my_car.drive(1.4)
 my_car.stop
 # Log your total distance travelled
 my_car.distance_traveled
+#Deliver pizza
+my_car.deliver_pizza
+
 
 
 
