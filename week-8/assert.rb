@@ -14,8 +14,11 @@ assert { name == "bettysue" }
 assert { name == "billybob" }
 
 # 2. Pseudocode what happens when the code above runs
-
-
+# Create a method named 'assert'
+  # Return an error statement UNLESS the provided code block is true
+# Set a name variable equal to 'bettysue'
+# Call the assert method passing in a code block with a true statement
+# Call the assert method passing in a code block with a false statement
 
 # 3. Copy your selected challenge here
 
