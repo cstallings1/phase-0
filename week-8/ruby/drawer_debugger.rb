@@ -68,59 +68,90 @@ end
 
 
 # DO NOT MODIFY THE DRIVER CODE UNLESS DIRECTED TO DO SO
-knife1 = Silverware.new("knife")
+# knife1 = Silverware.new("knife")
 
-silverware_drawer = Drawer.new
-silverware_drawer.add_item(knife1)
-silverware_drawer.add_item(Silverware.new("spoon"))
-silverware_drawer.add_item(Silverware.new("fork"))
+# silverware_drawer = Drawer.new
+# silverware_drawer.add_item(knife1)
+# silverware_drawer.add_item(Silverware.new("spoon"))
+# silverware_drawer.add_item(Silverware.new("fork"))
 
-silverware_drawer.view_contents
-puts silverware_drawer.contents[0].type == "knife" # Shoule be true
-puts silverware_drawer.contents[1].type == "spoon" # Shoule be true
-puts silverware_drawer.contents[2].type == "fork" # Shoule be true
+# silverware_drawer.view_contents
 
-silverware_drawer.remove_item
-puts silverware_drawer.contents.count == 2 # Should be true
+# silverware_drawer.remove_item
 
-silverware_drawer.view_contents
-sharp_knife = Silverware.new("sharp_knife")
+# silverware_drawer.view_contents
+# sharp_knife = Silverware.new("sharp_knife")
 
 
-silverware_drawer.add_item(sharp_knife)
-puts silverware_drawer.contents.count(sharp_knife) == 1 # Should be true
+# silverware_drawer.add_item(sharp_knife)
 
-silverware_drawer.view_contents
+# silverware_drawer.view_contents
 
-removed_knife = silverware_drawer.remove_item(sharp_knife)
-puts silverware_drawer.contents.count(sharp_knife) == 0 #Should be true
-removed_knife.eat
-puts removed_knife.clean == false #Should be true
-removed_knife.clean_silverware
-puts removed_knife.clean == true #Should be true
-raise Exception.new("Your silverware is not actually clean!") unless removed_knife.clean_silverware == true
+# removed_knife = silverware_drawer.remove_item(sharp_knife)
+# removed_knife.eat
+# removed_knife.clean_silverware
+# raise Exception.new("Your silverware is not actually clean!") unless removed_knife.clean_silverware == true
 
-silverware_drawer.view_contents
-silverware_drawer.dump
-puts silverware_drawer.contents.count == 0 #Should be true
-raise Exception.new("Your drawer is not actually empty") unless silverware_drawer.contents.empty?
-silverware_drawer.view_contents
+# silverware_drawer.view_contents
+# silverware_drawer.dump
+# raise Exception.new("Your drawer is not actually empty") unless silverware_drawer.contents.empty?
+# silverware_drawer.view_contents
 
-# What will you need here in order to remove a spoon? You may modify the driver code for this error.
-spoon = Silverware.new("spoon")
-silverware_drawer.add_item(spoon)
-puts silverware_drawer.contents.count(spoon) == 1 #Should be true
-raise Exception.new("You don't have a spoon to remove") unless silverware_drawer.contents.include?(spoon)
-silverware_drawer.remove_item(spoon) #What is happening when you run this the first time?
-puts silverware_drawer.contents.count(spoon) == 0 #Shoud return true
-spoon.eat
-puts spoon.clean #=> this should be false
+# # What will you need here in order to remove a spoon? You may modify the driver code for this error.
+# spoon = Silverware.new("spoon")
+# silverware_drawer.add_item(spoon)
+# raise Exception.new("You don't have a spoon to remove") unless silverware_drawer.contents.include?(spoon)
+# silverware_drawer.remove_item(spoon) #What is happening when you run this the first time?
+# spoon.eat
+# puts spoon.clean #=> this should be false
 
 # DRIVER TESTS GO BELOW THIS LINE
+#Counts the number of a given utensil in the silverware drawer
+def count_test(utensil, silverware_drawer)
+  count = 0
+  silverware_drawer.contents.each{|silverware| count += 1 if silverware.type == utensil}
+  return count
+end
 
+silverware_drawer = Drawer.new
+#
+knife1 = Silverware.new("knife")
+knife2 = Silverware.new("knife")
+spoon1 = Silverware.new("spoon")
+spoon2 = Silverware.new("spoon")
+spoon3 = Silverware.new("spoon")
+fork1 = Silverware.new("fork")
+fork2 = Silverware.new("fork")
+knife3 = Silverware.new("knife")
+spoon4 = Silverware.new("spoon")
 
+silverware_drawer.add_item(knife1)
+silverware_drawer.add_item(knife2)
+silverware_drawer.add_item(knife3)
+silverware_drawer.add_item(spoon1)
+silverware_drawer.add_item(spoon2)
+silverware_drawer.add_item(spoon3)
+silverware_drawer.add_item(spoon4)
+silverware_drawer.add_item(fork1)
+silverware_drawer.add_item(fork2)
 
+puts count_test("knife", silverware_drawer) == 3
+puts count_test("spoon", silverware_drawer) == 4
+puts count_test("fork", silverware_drawer) == 2
 
+silverware_drawer.remove_item
+silverware_drawer.remove_item
 
+puts count_test("fork", silverware_drawer) == 0
 
+silverware_drawer.remove_item(knife1)
+puts count_test("knife", silverware_drawer) == 2
+
+knife1.eat
+puts knife1.clean == false #Should be true
+knife1.clean_silverware
+puts knife1.clean == true #Should be true
+
+silverware_drawer.dump
+puts silverware_drawer.contents.empty? #Should be true
 # Reflection
