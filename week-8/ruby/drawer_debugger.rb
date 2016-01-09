@@ -74,32 +74,45 @@ silverware_drawer = Drawer.new
 silverware_drawer.add_item(knife1)
 silverware_drawer.add_item(Silverware.new("spoon"))
 silverware_drawer.add_item(Silverware.new("fork"))
+
 silverware_drawer.view_contents
+puts silverware_drawer.contents[0].type == "knife" # Shoule be true
+puts silverware_drawer.contents[1].type == "spoon" # Shoule be true
+puts silverware_drawer.contents[2].type == "fork" # Shoule be true
 
 silverware_drawer.remove_item
+puts silverware_drawer.contents.count == 2 # Should be true
+
 silverware_drawer.view_contents
 sharp_knife = Silverware.new("sharp_knife")
 
 
 silverware_drawer.add_item(sharp_knife)
+puts silverware_drawer.contents.count(sharp_knife) == 1 # Should be true
 
 silverware_drawer.view_contents
 
 removed_knife = silverware_drawer.remove_item(sharp_knife)
+puts silverware_drawer.contents.count(sharp_knife) == 0 #Should be true
 removed_knife.eat
+puts removed_knife.clean == false #Should be true
 removed_knife.clean_silverware
+puts removed_knife.clean == true #Should be true
 raise Exception.new("Your silverware is not actually clean!") unless removed_knife.clean_silverware == true
 
 silverware_drawer.view_contents
 silverware_drawer.dump
+puts silverware_drawer.contents.count == 0 #Should be true
 raise Exception.new("Your drawer is not actually empty") unless silverware_drawer.contents.empty?
 silverware_drawer.view_contents
 
 # What will you need here in order to remove a spoon? You may modify the driver code for this error.
 spoon = Silverware.new("spoon")
 silverware_drawer.add_item(spoon)
+puts silverware_drawer.contents.count(spoon) == 1 #Should be true
 raise Exception.new("You don't have a spoon to remove") unless silverware_drawer.contents.include?(spoon)
 silverware_drawer.remove_item(spoon) #What is happening when you run this the first time?
+puts silverware_drawer.contents.count(spoon) == 0 #Shoud return true
 spoon.eat
 puts spoon.clean #=> this should be false
 
