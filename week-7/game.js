@@ -141,8 +141,8 @@ var astronaut = {
     console.log("Astronuat moves to " + this.x + "," + this.y);
 
     //Move martian
-    martian.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    martian.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    martian.x = Math.floor(Math.random() * 5) + 1;
+    martian.y = Math.floor(Math.random() * 5) + 1;
     console.log("Martian moves to " + martian.x + "," + martian.y)
 
     //Check if astronaut made it to the ship
@@ -168,8 +168,8 @@ var astronaut = {
 
   //Fire the raygun by changing it's position
   shoot: function() {
-    raygun.x = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-    raygun.y = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+    raygun.x = Math.floor(Math.random() * 5) + 1;
+    raygun.y = Math.floor(Math.random() * 5) + 1;
     console.log("Raygun shoots at " + raygun.x + "," + raygun.y);
 
     if (raygun.x === martian.x && raygun.y === martian.y) {
@@ -192,8 +192,8 @@ var martian = {
 };
 
 var spaceship = {
-  x: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
-  y: Math.floor(Math.random() * (5 - 1 + 1)) + 1
+  x: Math.floor(Math.random() * 5) + 1,
+  y: Math.floor(Math.random() * 5) + 1
 };
 
 var raygun = {
@@ -202,10 +202,10 @@ var raygun = {
 };
 
 var blackHoles = {
-  x1: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
-  y1: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
-  x2: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
-  y2: Math.floor(Math.random() * (5 - 1 + 1)) + 1
+  x1: Math.floor(Math.random() * 5) + 1,
+  y1: Math.floor(Math.random() * 5) + 1,
+  x2: Math.floor(Math.random() * 5) + 1,
+  y2: Math.floor(Math.random() * 5) + 1
 };
 
 astronaut.move('right');
