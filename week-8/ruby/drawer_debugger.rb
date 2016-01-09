@@ -152,5 +152,8 @@ puts silverware_drawer.contents.empty? #Should be true
 
 # Reflection
 # What concepts did you review or learn in this challenge?
+  #I reviewed how to create useful driver test code and Ruby classes. I also reviewed how to make two classes interact with eachother.
 # What is still confusing to you about Ruby?
+  #Still trying to learn how to use composition effectively.
 # What are you going to study to get more prepared for Phase 1?
+  #I'll be researching OOD and composition.
