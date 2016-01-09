@@ -1,21 +1,17 @@
 # Drawer Debugger
 
-# I worked on this challenge [with: ].
+# I worked on this challenge [by myself].
 # I spent [#] hours on this challenge.
 
 # Original Code
 
 class Drawer
-attr_reader :contents
+attr_reader :contents, :open
 
 # Are there any more methods needed in this class?
 
   def initialize
     @contents = []
-    @open = true
-  end
-
-  def open
     @open = true
   end
 
@@ -27,7 +23,7 @@ attr_reader :contents
     @contents << item
   end
 
-  def remove_item(item = @contents.pop) #what is `#pop` doing?
+  def remove_item(item = @contents.last)
     @contents.delete(item)
   end
 
@@ -114,7 +110,6 @@ def count_test(utensil, silverware_drawer)
 end
 
 silverware_drawer = Drawer.new
-#
 knife1 = Silverware.new("knife")
 knife2 = Silverware.new("knife")
 spoon1 = Silverware.new("spoon")
@@ -154,4 +149,8 @@ puts knife1.clean == true #Should be true
 
 silverware_drawer.dump
 puts silverware_drawer.contents.empty? #Should be true
+
 # Reflection
+# What concepts did you review or learn in this challenge?
+# What is still confusing to you about Ruby?
+# What are you going to study to get more prepared for Phase 1?
