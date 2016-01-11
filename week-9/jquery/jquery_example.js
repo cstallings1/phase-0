@@ -1,7 +1,7 @@
 // U3.W9:JQuery
 
 
-// I worked on this challenge [with: David Mandelbaum].
+// I worked on this challenge [with: Devin Mandelbaum].
 // This challenge took me [1.5] hours.
 
 $(document).ready(function(){
