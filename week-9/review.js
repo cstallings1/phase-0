@@ -40,3 +40,48 @@
 // STEPS:
 //  Evaluate each item in the list and print out the item and quantity
 
+//Release 3 Original solution:
+
+var list = {
+
+};
+
+function addItem(item, qty) {
+  if (!list.hasOwnProperty(item)) {
+    list[item] = qty
+  }
+};
+
+function removeItem(item) {
+  if (list.hasOwnProperty(item)) {
+    delete list[item]
+  }
+};
+
+function updateItem(item, qty) {
+  if (list.hasOwnProperty(item)) {
+    list[item] = qty
+  }
+};
+
+function printList() {
+  for (var item in list) {
+    console.log(item,':',list[item])
+  }
+};
+
+// DRIVER TEST CODE
+addItem('apples', 2)
+addItem('oranges', 1)
+addItem('pears', 3)
+for (var item in list) {
+  console.log(list.hasOwnProperty(item) == true) //Should be true
+};
+
+removeItem('pears')
+console.log(list.hasOwnProperty('pears') == false); //Should be true
+
+updateItem('oranges', 4)
+console.log(list["oranges"] == 4); //Should be true
+
+printList();
