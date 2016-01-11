@@ -60,3 +60,11 @@ image.on('click', function(){
 
 
 })  // end of the document.ready function: do not remove or write DOM manipulation below this.
+
+// Reflection
+// What is jQuery?
+  //jQuery is a built in JavaScript library. It takes common tasks done in JavaScript and wraps them into methods you can call.
+// What does jQuery do for you?
+  //It provides built in methods that allow you to accomplish a task you could do with plain JavaScript in fewer lines of code. The jQuery library also provides CSS, HTML/DOM manipulation, animations, AJAX, and HTML event handlers.
+// What did you learn about the DOM while working on this challenge?
+  //I solidifed my learning of how to select elements based on their relationship to other elements. I also learned how to move elements around on the DOM using jQuery and how to change their CSS properties.
