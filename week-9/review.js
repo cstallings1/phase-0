@@ -40,7 +40,37 @@
 // STEPS:
 //  Evaluate each item in the list and print out the item and quantity
 
-//Release 3 Original solution:
+// Release 3 Initial Solution:
+// var list = {
+
+// };
+
+// function addItem(item, qty) {
+//   if (!list.hasOwnProperty(item)) {
+//     list[item] = qty
+//   }
+// };
+
+// function removeItem(item) {
+//   if (list.hasOwnProperty(item)) {
+//     delete list[item]
+//   }
+// };
+
+// function updateItem(item, qty) {
+//   if (list.hasOwnProperty(item)) {
+//     list[item] = qty
+//   }
+// };
+
+// function printList() {
+//   for (var item in list) {
+//     console.log(item + ": " + list[item])
+//   }
+// };
+
+
+//Release 4 Refactor:
 
 var list = {
 
@@ -65,6 +95,7 @@ function updateItem(item, qty) {
 };
 
 function printList() {
+  console.log("Grocery List")
   for (var item in list) {
     console.log(item,':',list[item])
   }
@@ -85,3 +116,10 @@ updateItem('oranges', 4)
 console.log(list["oranges"] == 4); //Should be true
 
 printList();
+
+
+// Reflection:
+// What concepts did you solidify in working on this challenge? (reviewing the passing of information, objects, constructors, etc.)
+// What was the most difficult part of this challenge?
+// Did an array or object make more sense to use and why?
+  //Yes, I thought it was easier to do this challenge in JavaScript using an object instead of a hash which I used in Ruby. It was easier to iterate through the JS objecy than a Ruby hash for me.
