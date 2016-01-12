@@ -126,8 +126,11 @@
 // // Did an array or object make more sense to use and why?
 //   //Yes, I thought it was easier to do this challenge in JavaScript using an object instead of a hash which I used in Ruby. It was easier to iterate through the JS objecy than a Ruby hash for me.
 
-document.getElementById("add-button").onclick = function () {
+
+var addItem = function() {
   var listItem = document.getElementById('list-item').value;
-  var li = "<li>" + listItem + "</li>";
-  document.getElementById('grocery-list').appendChild(li);
-};
+  var li = document.createElement('li');
+  li.innerHTML = listItem;
+  document.getElementById('item-in-list').appendChild(li);
+}
+
