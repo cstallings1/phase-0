@@ -216,3 +216,9 @@ p local.email_list
 
 
 # Reflection
+# What concepts did you review in this challenge?
+  # I reviewed creating classes and passing information between methods and classes. We also reviewed the delete_if enumerable method and other built in methods when reading through the Ruby docs. Using the Date class was new to me and it was really easy - I can see this being really useful in the future.
+# What is still confusing to you about Ruby?
+  # We were a little confused about how the keyword 'super' works. We realize that it's a way to inherit methods from a superclass but are a litle confused as to why we need that keyword when we used the '<' operator to show inheritance.
+# What are you going to study to get more prepared for Phase 1?
+  # I need to study more about inheritance and object oriented design. As a concept I understand it but when it comes to implementation I feel that I still have a lot to learn.
