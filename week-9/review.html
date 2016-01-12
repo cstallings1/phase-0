@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Grocery List</title>
+  <link type="text/css" rel="stylesheet" href="review.css">
   <script type="text/javascript" src="review.js"></script>
 </head>
 
 <body>
   <h1>Grocery List</h1>
-      <input type="text" name="item" id="list-item" placeholder="item">
-      <input type="number" name="qty" id="list-qty" placeholder="qty">
-      <button id="add-button" onclick="addItem()">Add to List</button>
+  <input type="text" name="item" id="list-item" placeholder="item">
+  <input type="number" name="qty" id="list-qty" placeholder="qty">
+  <button id="add-button" onclick="addItem()">Add to List</button>
+  <div id="grocery-list-wrapper">
     <div id="left-col">
-      <ul id="item-in-list"></ul>
+     <ul id="item-in-list"></ul>
     </div>
     <div id="right-col">
       <ul id="qty-in-list"></ul>
-    </div>
+  </div>
+</div>
 </body>
 </html>
