@@ -22,8 +22,19 @@
 # Initial Solution
 
 def super_fizzbuzz(array)
-
-
+  fizzbuzzed_array = []
+  array.each do |n|
+    if (n % 3 == 0) && (n % 5 == 0)
+      fizzbuzzed_array.push('FizzBuzz')
+    elsif n % 3 == 0
+      fizzbuzzed_array.push('Fizz')
+    elsif n % 5 == 0
+      fizzbuzzed_array.push('Buzz')
+    else
+      fizzbuzzed_array.push(n)
+    end
+  end
+  return fizzbuzzed_array
 end
 
 
