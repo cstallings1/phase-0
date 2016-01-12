@@ -120,6 +120,8 @@ printList();
 
 // Reflection:
 // What concepts did you solidify in working on this challenge? (reviewing the passing of information, objects, constructors, etc.)
+  //I reviewed how to iterate through object properties and add create functions. At first I was going to use constructors but ended up liking my current solution better but I did review constructors because of that.
 // What was the most difficult part of this challenge?
+  //This wasn't too hard for me to translate into JavaScript, I actually thought it was easier than in Ruby. The most difficult part was when I was originally trying to use prototype and constructors. I wanted to use those concepts in my solution but it just didn't seem to work as well as my current solution.
 // Did an array or object make more sense to use and why?
   //Yes, I thought it was easier to do this challenge in JavaScript using an object instead of a hash which I used in Ruby. It was easier to iterate through the JS objecy than a Ruby hash for me.
