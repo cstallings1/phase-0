@@ -1,0 +1,38 @@
+body {
+  width: 100%;
+  height: 100%;
+  font-family: helvetica;
+}
+
+#left-col {
+  display: inline-block;
+  width: 40%;
+}
+
+#right-col {
+  display: inline-block;
+  width: 27%;
+}
+
+#remove-col {
+  display: inline-block;
+  width: 10%;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+#grocery-list-wrapper {
+  width: 340px;
+  height: 400px;
+}
+
+li:not(:first-child) {
+  font-size: 15px;
+  font-weight: 100;
+}
