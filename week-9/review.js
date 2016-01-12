@@ -128,9 +128,17 @@
 
 
 var addItem = function() {
-  var listItem = document.getElementById('list-item').value;
-  var li = document.createElement('li');
-  li.innerHTML = listItem;
-  document.getElementById('item-in-list').appendChild(li);
+  //Add item to list
+  var listItem = document.getElementById("list-item").value;
+  var liItem = document.createElement("li")
+  liItem.innerHTML = listItem;
+  document.getElementById("item-in-list").appendChild(liItem);
+
+  //Add qty to list
+  var listQty = document.getElementById("list-qty").value;
+  var liQty = document.createElement("li")
+  liQty.innerHTML = listQty;
+  document.getElementById("qty-in-list").appendChild(liQty);
+
 }
 
