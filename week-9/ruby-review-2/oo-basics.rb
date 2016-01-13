@@ -14,15 +14,16 @@ class Student
   attr_accessor :scores, :first_name
 
   def initialize(args)   #Use named arguments!
-    #your code here
+    @first_name = args[:first_name]
+    @scores = args[:scores]
   end
 end
 
-alex = Student.new({first_name: "Alex", scores: [100, 100, 100, 0, 100]})
-catie = Student.new({first_name: "Catie", scores: [100, 100, 90, 89, 80]})
-devin = Student.new({first_name: "Devin", scores: [90, 100, 100, 85, 99]})
-dan = Student.new({first_name: "Dan", scores: [89, 95, 100, 100, 90]})
-maryjane = Student.new({first_name: "Mary Jane", scores: [100, 90, 80, 95, 100]})
+alex = Student.new({:first_name => "Alex", scores: [100, 100, 100, 0, 100]})
+catie = Student.new({:first_name => "Catie", scores: [100, 100, 90, 89, 80]})
+devin = Student.new({:first_name => "Devin", scores: [90, 100, 100, 85, 99]})
+dan = Student.new({:first_name => "Dan", scores: [89, 95, 100, 100, 90]})
+maryjane = Student.new({:first_name => "Mary Jane", scores: [100, 90, 80, 95, 100]})
 
 students = [alex, catie, devin, dan, maryjane]
 
