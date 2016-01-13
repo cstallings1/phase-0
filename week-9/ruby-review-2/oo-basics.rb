@@ -6,7 +6,7 @@
 
 
 # Pseudocode
-
+#N/A
 
 # Initial Solution
 
@@ -17,6 +17,29 @@ class Student
     @first_name = args[:first_name]
     @scores = args[:scores]
   end
+
+  def average
+    sum = 0
+    @average = 0
+    @scores.each{|n| sum += n}
+    @average = (sum / @scores.length)
+  end
+
+  def letter_grade
+    @letter_grade = ""
+    if @average >= 90
+      @letter_grade = "A"
+    elsif @average >= 80
+      @letter_grade = "B"
+    elsif @average >= 70
+      @letter_grade = "C"
+    elsif @average >= 60
+      @letter_grade = "D"
+    else
+      @letter_grade = "F"
+    end
+  end
+
 end
 
 alex = Student.new({:first_name => "Alex", scores: [100, 100, 100, 0, 100]})
