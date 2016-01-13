@@ -101,7 +101,7 @@ function printList() {
   }
 };
 
-// DRIVER TEST CODE
+DRIVER TEST CODE
 addItem('apples', 2)
 addItem('oranges', 1)
 addItem('pears', 3)
@@ -117,6 +117,12 @@ console.log(list["oranges"] == 4); //Should be true
 
 printList();
 
+
+// I also tried to do a web version. My link to JSFiddle shown below:
+// https://jsfiddle.net/54ykvrgb/
+// The delete functionality still has some kinks to work out
+// I'll try to get back to that if I have time this week.
+
 // Reflection:
 // What concepts did you solidify in working on this challenge? (reviewing the passing of information, objects, constructors, etc.)
   //I reviewed how to iterate through object properties and add create functions. At first I was going to use constructors but ended up liking my current solution better but I did review constructors because of that.
@@ -126,29 +132,43 @@ printList();
   //An object made the most sense to me. I thought it was easier to do this challenge in JavaScript using an object instead of a hash which I used in Ruby. It was easier to iterate through the JS objecy than a Ruby hash for me.
 
 
-//JS Code for my web version.
-//I ran into issues adding a delete item button for each item
-//If I have more time I will come back to that - this was just extra practice for me
 
+
+
+
+//JS Code for my web version.
+var i = 2
 var addItem = function() {
   //Add item to list
   var listItem = document.getElementById("list-item").value;
-  var liItem = document.createElement("li")
+  var liItem = document.createElement("li");
+  liItem.id = i;
   liItem.innerHTML = listItem;
   document.getElementById("item-in-list").appendChild(liItem);
 
   //Add qty to list
   var listQty = document.getElementById("list-qty").value;
-  var liQty = document.createElement("li")
+  var liQty = document.createElement("li");
+  liQty.id = i;
   liQty.innerHTML = listQty;
   document.getElementById("qty-in-list").appendChild(liQty);
 
   //Add an 'x' button so you can remove item later
-  var liRemove = document.createElement("li")
-  liRemove.id = 'remove-button';
-  liRemove.innerHTML = "<button onclick='removeItem()'>X</button>";
+  var liRemove = document.createElement("li");
+  liRemove.id = i;
+
+  liRemove.innerHTML = "<button class='remove-button' id=" + i + " onclick ='removeItem(" + i + ")'>X</button>"
   document.getElementById("remove-in-list").appendChild(liRemove);
-}
+
+  i += 1;
+};
+
+var uls = document.getElementsByTagName('ul')
+var removeItem = function(id) {
+  for (var i = 0; i < uls.length; i++) {
+    uls[i].removeChild(uls[i].childNodes[id + 1]);
+  }
+};
 
 
 
