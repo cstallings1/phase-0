@@ -50,6 +50,17 @@ maryjane = Student.new({:first_name => "Mary Jane", scores: [100, 90, 80, 95, 10
 
 students = [alex, catie, devin, dan, maryjane]
 
+def linear_search(array, name)
+  search_array = array.map {|name| name.first_name}
+  search_array.each_with_index do |n, i|
+    if n == name
+      return i
+    else
+      return -1
+    end
+  end
+end
+
 # Refactored Solution
 
 
