@@ -55,11 +55,30 @@ def linear_search(array, name)
   search_array.each_with_index do |n, i|
     if n == name
       return i
-    else
-      return -1
     end
   end
+  return -1
 end
+
+def binary_search(array, name)
+  name_array = array.map {|n| n.first_name}
+  sorted_array = name_array.sort {|a, b| a <=> b }
+
+  min = 0
+  max = sorted_array.length - 1
+  while (min <= max)
+  mid = (min + max) / 2
+    if sorted_array[mid] == name
+      return mid
+    elsif sorted_array[mid] < name
+      min = mid + 1
+    else
+      max = mid - 1
+    end
+  end
+  return -1
+end
+
 
 # Refactored Solution
 
@@ -71,24 +90,29 @@ end
 # DRIVER TESTS GO BELOW THIS LINE
 # Initial Tests:
 
-p students[0].first_name == "Alex"
-p students[0].scores.length == 5
-p students[0].scores[0] == students[0].scores[4]
-p students[0].scores[3] == 0
+# p students[0].first_name == "Alex"
+# p students[0].scores.length == 5
+# p students[0].scores[0] == students[0].scores[4]
+# p students[0].scores[3] == 0
 
 
 # Additional Tests 1:
 
-p students[0].average == 80
-p students[0].letter_grade == 'B'
+# p students[0].average == 80
+# p students[0].letter_grade == 'B'
 
 # Additional Tests 2:
 
-p linear_search(students, "Alex") == 0
-p linear_search(students, "NOT A STUDENT") == -1
+# p linear_search(students, "Alex") == 0
+# p linear_search(students, "Catie") == 1
+# p linear_search(students, "NOT A STUDENT") == -1
 
-
-
+p binary_search(students, "Catie") == 1
+p binary_search(students, "Alex") == 0
+p binary_search(students, "Dan") == 2
+p binary_search(students, "Devin") == 3
+p binary_search(students, "Mary Jane") == 4
+p binary_search(students, "NOT A STUDENT") == -1
 
 
 # Reflection
